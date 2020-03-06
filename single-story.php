@@ -5,11 +5,9 @@
 
   <?php if (has_post_thumbnail()) { ?>
     <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-      <?php the_post_thumbnail();
+      <?php the_post_thumbnail();?>
     </a>
   <?php } ?>
-
-  <?php endif; ?>
 
   <h1>
     <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
@@ -20,7 +18,6 @@
   <?php the_content();?>
 
   <h2>Do we need a pagebuilder?</h2>
-
-<?php get_sidebar();?>
+  <h2>SHOW ME THE TAXONOMY THAT I BELONG TO</h2>
 
 <?php get_footer();?>
