@@ -4,6 +4,8 @@
 <?php the_title();?>
 <?php the_content();?>
 
+<?php get_template_part('map');?>
+
 <?php $custom_terms = get_terms('community');?>
 
 <?php foreach ($custom_terms as $term) {

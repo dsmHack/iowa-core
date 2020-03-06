@@ -2,3 +2,8 @@ body {
   border: 2px solid magenta;
   font-family: 'Didact Gothic', sans-serif;
 }
+
+.map {
+  background-color: #ccc;
+  height: 200px;
+}
