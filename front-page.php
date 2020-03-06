@@ -9,6 +9,7 @@
 <?php $custom_terms = get_terms('community');?>
 
 <?php foreach ($custom_terms as $term) { ?>
+  Term Slug: <?php echo $term->slug;?>
 
   <?php $story_query = new WP_Query(array(
     'post_type' => 'story',
