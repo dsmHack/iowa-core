@@ -1,0 +1,21 @@
+{
+  "name": "iowa_core",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "next build",
+    "dev": "next",
+    "export": "next export",
+    "serve": "cd out && serve -p 3000",
+    "start": "next start"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "latest",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "serve": "^11.3.0"
+  }
+}
