@@ -1,4 +1,4 @@
-<?php function create_post_type_html5() {
+<?php function create_story_post_type() {
   register_post_type('story',
       array(
       'labels' => array(
@@ -29,6 +29,35 @@
           'community'
       )
     ));
-
-    register_taxonomy_for_object_type('community', '');
 }
+
+add_action( 'init', 'create_story_post_type', 0 );
+
+
+
+function add_story_taxonomy() {
+  $labels = array(
+    'name' => _x( 'Community', 'taxonomy general name' ),
+    'singular_name' => _x( 'Community', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Communities' ),
+    'all_items' => __( 'All Communities' ),
+    'parent_item' => __( 'Parent Community' ),
+    'parent_item_colon' => __( 'Parent Community:' ),
+    'edit_item' => __( 'Edit Community' ),
+    'update_item' => __( 'Update Community' ),
+    'add_new_item' => __( 'Add New Community' ),
+    'new_item_name' => __( 'New Community Name' ),
+    'menu_name' => __( 'Communities' ),
+  );
+
+  register_taxonomy('community', array('deals'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'community' ),
+  ));
+}
+
+add_action( 'init', 'add_story_taxonomy', 0 );
