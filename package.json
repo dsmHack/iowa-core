@@ -4,7 +4,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next",
-    "deploy": "yarn build && gh-pages -d out",
+    "deploy": "NODE_ENV=gh-pages yarn build && gh-pages -d out",
     "export": "next export && touch out/.nojekyll",
     "serve": "cd out && serve -p 3000",
     "start": "next start"
