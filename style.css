@@ -1,0 +1,14 @@
+/*
+  Theme Name: Iowa Core
+  Theme URI: http://html5blank.com
+  Description: HTML5 Blank WordPress Theme
+  Version: 1.0
+  Author: DSM Hack 2020
+
+  License: MIT
+  License URI: http://opensource.org/licenses/mit-license.php
+*/
+
+body {
+  border: 10px solid magenta;
+}
