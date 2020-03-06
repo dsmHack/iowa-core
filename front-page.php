@@ -8,7 +8,7 @@
 
 <?php $custom_terms = get_terms('community');?>
 
-<?php foreach ($custom_terms as $term) {
+<?php foreach ($custom_terms as $term) { ?>
 
   <?php $story_query = new WP_Query(array(
     'post_type' => 'story',
