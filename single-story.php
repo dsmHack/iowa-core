@@ -1,6 +1,8 @@
 <?php get_header(); ?>
 <?php the_post();?>
 
+<h2>I AM A SINGLE CUSTOM POST TYPE (STORY)</h2>
+
   <?php if (has_post_thumbnail()) { ?>
     <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
       <?php the_post_thumbnail();
