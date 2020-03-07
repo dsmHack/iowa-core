@@ -6,8 +6,10 @@
         <div class="col">
           <div class="title-block">
             <h1 class="text-center"><?php the_title();?></h1>
-            <div class="col map-summary">
-              <?php the_content();?>
+            <div class="col">
+              <div class="lead">
+                <?php the_content();?>
+              </div>
             </div>
           </div>
         </div>
@@ -29,7 +31,7 @@
         <?php $community_query->the_post();?>
           <div class="row">
             <div class="col">
-              <h2>
+              <h2 class="text-center">
                 <a href="<?php the_permalink();?>">
                   <?php the_title();?>
                 </a>
