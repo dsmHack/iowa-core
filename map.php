@@ -42,7 +42,7 @@
 </div>
 
 <script>
-var story_array = <?php echo json_encode($story_array);?>;
+var story_array = <?php echo json_encode($story_associative_array);?>;
 console.log('hello', story_array);
 
 var mapStyle = [{
