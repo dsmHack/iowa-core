@@ -2,8 +2,15 @@ body {
   font-family: 'Nunito Sans', sans-serif;
 }
 
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .title-block {
-  max-width: 800px;
   margin: 0 auto;
   padding: 2em 0;
   text-align: center;

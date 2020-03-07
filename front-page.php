@@ -5,7 +5,10 @@
     <div class="row">
         <div class="col">
           <div class="title-block">
-            <h1 class="text-center"><?php the_title();?></h1>
+            <h1 class="text-center">
+              <?php the_title();?>
+            </h1>
+            <hr />
             <div class="col">
               <div class="lead">
                 <?php the_content();?>
@@ -17,7 +20,11 @@
 </div>
 
 <div class="container-fluid">
-  <?php include 'map.php';?>
+  <div class="row">
+    <div class="col">
+      <?php include 'map.php';?>
+    </div>
+  </div>
 </div>
 
 <?php $community_query = new WP_Query(array(
@@ -61,11 +68,11 @@
                         <img class="img-fluid mb-2" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     <?php } ?>
                   </a>
-                  <h3>
+                  <h4>
                     <a href="<?php echo get_permalink($story->ID);?>">
                       <?php echo get_the_title($story->ID);?>
                     </a>
-                  </h3>
+                  </h4>
                   <p>
                     <?php echo get_the_excerpt($story->ID);?>
                   </p>
