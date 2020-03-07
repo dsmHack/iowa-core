@@ -11,7 +11,7 @@
 .grid-sizer,
 .grid-item {
   margin-bottom: 1.5%;
-  width: 31.5%;
+  width: 32.3%;
 }
 
 .grid-item {
@@ -35,7 +35,6 @@
 
 .story-information-module {
   border: 1px solid #333;
-  margin-bottom: 1em;
   padding: 15px 15px 0;
 }
 
