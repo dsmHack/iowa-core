@@ -66,6 +66,7 @@
       </div>
       <div class="grid">
         <div class="grid-sizer"></div>
+        <div class="gutter-sizer"></div>
         <?php foreach( $images as $image ){ ?>
           <div class="grid-item">
             <img class="img-fluid"

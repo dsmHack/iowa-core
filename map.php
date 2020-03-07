@@ -26,7 +26,7 @@ $s_query = new WP_Query(array(
 <div class="map-wrapper">
     <div id="controls" class="nicebox map-controls">
         <select id="census-variable">
-            <option value="https://data.iowa.gov/resource/aeyn-twxp">Unemployment Benefit Paid</option>
+            <option>Unemployment Benefit Paid</option>
         </select>
         <div class="legend" id="legend">
             <div class="census-min" id="census-min">min</div>
@@ -66,7 +66,7 @@ $s_query = new WP_Query(array(
 
     function initMap() {
         var centerOfIowa = {lat: 41.8780, lng: -93.0977};
-        
+
         // var centerOfDesMoines = {lat: 41.5868, lng: -93.6250};
         // var storyLocations = [centerOfIowa, centerOfDesMoines];
 
@@ -77,8 +77,8 @@ $s_query = new WP_Query(array(
 
         map = new google.maps.Map(
             document.getElementById('map'), {zoom: 3, center: centerOfIowa});
-        
-    /* 
+
+    /*
         yikes
     */
    //import the storyARry to get zip and to attach story.link to the clickhandler
@@ -92,7 +92,7 @@ $s_query = new WP_Query(array(
                     lat: data.records[0].geometry.coordinates[1],
                     lng: data.records[0].geometry.coordinates[0]
                 }
-            
+
                 let marker = new google.maps.Marker({position: latLngObj, map: map});
                 marker.addListener('click', function () {
                     window.location.href = story.link;
@@ -106,24 +106,23 @@ $s_query = new WP_Query(array(
     */
         // this should be over each Story in  storyArray, hard-coded values for now
         for (var i = 0; i < storyArray.length; i++) {
-            
+
             var marker = createStoryMapMarker(storyArray[i]);
-            
+
         }
 
         map.fitBounds(strictIowaBounds, 0);
-
-         loadMapShapes();
     }
 
-    function loadMapShapes() {
-        // load US state outline polygons from a GeoJson file
+    function loadMap() {
+      return new Promise(function(resolve) {
         map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName: 'name'}, function() {
-          loadCensusData();
+          resolve();
         });
+      });
     }
 
-    function loadCensusData() {
+    function loadUnemploymentBenefitDollarsPerCounty() {
        // load the requested variable from the census API (using local copies)
        var xhr = new XMLHttpRequest();
        xhr.open('GET', 'https://data.iowa.gov/resource/aeyn-twxp.json');
@@ -252,6 +251,20 @@ $s_query = new WP_Query(array(
         // reset the hover state, returning the border to normal
         e.feature.setProperty('state', 'normal');
     }
+
+    jQuery(document).ready(function() {
+      const necessaryFunctionWrapper = async function() {
+        jQuery('#census-variable').change(function() {
+          const censusChoice = jQuery(this).text().trim();
+          if (censusChoice === 'Unemployment Benefit Paid') {
+            loadUnemploymentBenefitDollarsPerCounty();
+          }
+        });
+        await loadMap();
+        jQuery('#census-variable').trigger('change');
+      };
+      necessaryFunctionWrapper();
+    });
 
 </script>
 <script defer
