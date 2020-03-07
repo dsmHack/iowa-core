@@ -43,6 +43,12 @@
             var dpci = document.getElementById('dollars-per-capita-income');
             dpci.textContent = '$' + dollarsPerCapitaIncome;
           })
+
+          fetch(`https://data.iowa.gov/resource/yhbr-3t8a.json?$query=SELECT * where year='2019' and county_name='${county}'`)
+          .then(response=>response.json())
+          .then(function(data){
+            console.log(data);
+          })
         </script>
 
         <?php if(have_rows('zip_codes')) { ?>
