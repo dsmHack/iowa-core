@@ -1,5 +1,7 @@
 <?php ?>
-<head>    <style>
+<head>   
+  
+  <style>
       html, body, #map { height: 100%; margin: 0; padding: 0; overflow: hidden; }
         .nicebox {
           position: absolute;
