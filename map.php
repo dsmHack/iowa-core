@@ -41,7 +41,7 @@ $s_query = new WP_Query(array(
         Google map here
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
 <script>
     var storyArray = <?php echo json_encode($story_associative_array);?>;
 
@@ -69,6 +69,11 @@ $s_query = new WP_Query(array(
 
         map = new google.maps.Map(
             document.getElementById('map'), {zoom: 3, center: centerOfIowa});
+        var oms = new OverlappingMarkerSpiderfier(map, {
+          markersWontMove: true,
+          markersWontHide: true,
+          basicFormatEvents: true
+        });
 
         async function createStoryMapMarker(story) {
             let mycall = `https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${story.zip}`
@@ -82,9 +87,10 @@ $s_query = new WP_Query(array(
                 }
 
                 let marker = new google.maps.Marker({position: latLngObj, map: map});
-                marker.addListener('click', function () {
-                    window.location.href = story.link;
+                google.maps.event.addListener(marker, 'spider_click', function(e) {
+                  window.location.href = story.link;
                 });
+                oms.addMarker(marker);
 
                 var infowindow = new google.maps.InfoWindow({
                   content: story.title
