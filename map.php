@@ -62,9 +62,6 @@ $s_query = new WP_Query(array(
     function initMap() {
         var centerOfIowa = {lat: 41.8780, lng: -93.0977};
 
-        // var centerOfDesMoines = {lat: 41.5868, lng: -93.6250};
-        // var storyLocations = [centerOfIowa, centerOfDesMoines];
-
         var strictIowaBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng(40.566435, -96.495775),
             new google.maps.LatLng(43.493584, -90.698676)
@@ -88,12 +85,17 @@ $s_query = new WP_Query(array(
                 marker.addListener('click', function () {
                     window.location.href = story.link;
                 });
+
+                var infowindow = new google.maps.InfoWindow({
+                  content: story.title
+                });
                 marker.addListener('mouseover', function () {
-                  marker.setAnimation(google.maps.Animation.BOUNCE);
+                  infowindow.open(map, marker);
                 });
                 marker.addListener('mouseout', function () {
-                  marker.setAnimation(null);
+                  infowindow.close();
                 });
+
                 return;
             })
               .catch(error => console.error(error));
