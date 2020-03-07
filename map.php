@@ -66,7 +66,9 @@ var mapStyle = [{
       function loadMapShapes() {
           // load US state outline polygons from a GeoJson file
           map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName:'name'},
-          loadCensusData());
+          function(features) {
+            loadCensusData();
+          });
       }
 
       function loadCensusData() {
