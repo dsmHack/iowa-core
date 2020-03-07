@@ -50,7 +50,37 @@ School District:<br />
 Median Population Age<br />
 <?php echo get_field('median_population_age');?>
 
-<h2>LOOP THROUGH RELATED STORIES</h2>
+<h2>Stories from This Community</h2>
+<?php
+  $stories = get_posts(array(
+    'post_type' => 'story',
+    'meta_query' => array(
+        array(
+            'key' => 'community',
+            'value' => '"' . get_the_ID() . '"',
+            'compare' => 'LIKE'
+        )
+    )
+  ));
 
+?>
+<?php if( $stories ): ?>
+  <ul>
+  <?php foreach( $stories as $story): ?>
+      <li>
+          <a href="<?php echo get_permalink($story->ID);?>">
+            <?php $image = get_field('teaser_photo',  $story->ID);?>
+            <?php if(!empty($image)) { ?>
+              <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+            <?php } ?>
+          </a>
+          <a href="<?php echo get_permalink($story->ID);?>">
+            <?php echo get_the_title($story->ID);?>
+          </a>
+          <?php echo get_the_excerpt($story->ID);?>
+      </li>
+  <?php endforeach; ?>
+  </ul>
+<?php endif; ?>
 
 <?php get_footer();?>

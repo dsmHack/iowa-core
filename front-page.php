@@ -17,53 +17,54 @@
     <?php get_template_part('map');?>
 </div>
 
-<?php $custom_terms = get_terms('community');?>
+<?php $community_query = new WP_Query(array(
+  'post_type' => 'community',
+));?>
 
-<?php foreach ($custom_terms as $term) { ?>
-  Term Slug: <?php echo $term->slug;?>
+<?php if ($community_query->have_posts()) { ?>
+  <?php while ($community_query->have_posts()) { ?>
+    <?php $community_query->the_post();?>
+      <h2>
+        <a href="<?php the_permalink();?>">
+          <?php the_title();?>
+        </a>
+      </h2>
+      <hr />
+      <?php
+        $stories = get_posts(array(
+          'post_type' => 'story',
+          'meta_query' => array(
+              array(
+                  'key' => 'community',
+                  'value' => '"' . $post->ID . '"',
+                  'compare' => 'LIKE'
+              )
+          )
+        ));
+      ?>
+      <?php if( $stories ): ?>
+        <ul>
+        <?php foreach( $stories as $story): ?>
+            <li>
+                <a href="<?php echo get_permalink($story->ID);?>">
+                  <?php $image = get_field('teaser_photo',  $story->ID);?>
+                  <?php if(!empty($image)) { ?>
+                    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                  <?php } ?>
+                </a>
+                <a href="<?php echo get_permalink($story->ID);?>">
+                  <?php echo get_the_title($story->ID);?>
+                </a>
+                <?php echo get_the_excerpt($story->ID);?>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+      <?php endif; ?>
+      <?php wp_reset_postdata();?>
 
-  <?php $story_query = new WP_Query(array(
-    'post_type' => 'story',
-    'tax_query' => array(
-      array (
-        'taxonomy' => 'community',
-        'field' => 'slug',
-        'terms' => $term->slug,
-      )
-    ),
-  ));?>
-
-  <?php if ($story_query->have_posts()) { ?>
-    <ul>
-      <?php while ($story_query->have_posts()) { ?>
-        <?php $story_query->the_post();?>
-          <li>
-            <article>
-              <?php $image = get_field('teaser_photo');?>
-
-              <?php if ($image) { ?>
-                <div class="story-image">
-                  <a href="<?php the_permalink();?>" title="<?php the_title(); ?>">
-                    <?php echo $image;?>
-                  </a>
-                </div>
-              <?php } ?>
-              <div class="story-title">
-                <h3>
-                  <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                    <?php the_title(); ?>
-                  </a>
-                </h3>
-              </div>
-              <div class="story-excerpt">
-                <?php echo get_the_excerpt();?>
-              </div>
-            </article>
-        </li>
-      <?php } ?>
-    </ul>
-  <?php } ?>
-  <?php wp_reset_postdata();?>
+    <?php } ?>
 <?php } ?>
+
+<?php wp_reset_postdata();?>
 
 <?php get_footer();?>
