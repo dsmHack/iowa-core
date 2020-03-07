@@ -9,7 +9,12 @@
 <?php if ($s_query->have_posts()){ ?>
   <?php while ($s_query->have_posts()) { ?>
     <?php $s_query->the_post();?>
-    <?php $story_array[] = $s_query;?>
+    <?php $story_array = array(
+              'link' => wp_get_permalink(),
+              'title' => get_the_title(),
+              'community' => get_field('community'), 
+              'zip' => get_field('zip'), 
+          ); ?>
   <?php } ?>
 <?php } ?>
 <?php wp_reset_postdata();?>
