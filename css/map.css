@@ -28,19 +28,19 @@
   z-index: 2;
 }
 
+.map-controls select {
+  display: block;
+  margin-bottom: .5em;
+  width: 100%;
+}
+
 .map-wrapper .legend {
   align-items: center;
   background-color: #fff;
   display: flex;
-  display: -webkit-box;
+  display: -webkit-flex;
   width: 100%;
   z-index: 2;
-}
-
-.map-controls select {
-  display: block;
-  margin-bottom: 1em;
-  width: 100%;
 }
 
 .map-wrapper .color-key {
