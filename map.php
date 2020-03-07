@@ -3,7 +3,6 @@
   <div id="map" class="map">
     GOOGLE MAP HERE
   </div>
-  <script>
     <style>
       #map { height: 100%; margin: 0; padding: 0; overflow: hidden; }
         .nicebox {
@@ -57,6 +56,7 @@
         #data-label:after { content: ':' }
         #data-caret { margin-left: -5px; display: none; font-size: 14px; width: 14px}
     </style>
+<script>
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
       }, {
