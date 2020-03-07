@@ -1,33 +1,32 @@
 <?php ?>
-<h2>
+<div class="map-wrapper">
+
+  <div id="controls" class="nicebox map-controls">
+    <select id="census-variable">
+      <option value="https://data.iowa.gov/resource/aeyn-twxp">Unemployment Benefit Paid</option>
+    </select>
+    <div id="legend">
+      <div class="census-min" id="census-min">min</div>
+      <div class="color-key">
+        <span id="data-caret">&#x25c6;</span>
+      </div>
+      <div class="census-max" id="census-max">max</div>
+    </div>
+  </div>
+
   <div id="map" class="map">
-    GOOGLE MAP HERE
+    Google map here
   </div>
-  <div id="legend" style=" { display: flex; display: -webkit-box; padding-top: 7px }">
-        <div id="census-min">min</div>
-        <div style="{
-          background: linear-gradient(to right,
-            hsl(5, 69%, 54%) 0%,
-            hsl(29, 71%, 51%) 17%,
-            hsl(54, 74%, 47%) 33%,
-            hsl(78, 76%, 44%) 50%,
-            hsl(102, 78%, 41%) 67%,
-            hsl(127, 81%, 37%) 83%,
-            hsl(151, 83%, 34%) 100%);
-          flex: 1;
-          -webkit-box-flex: 1;
-          margin: 0 5px;
-          text-align: left;
-          font-size: 1.0em;
-          line-height: 1.0em;
-        }"><span id="data-caret" sytle="{ margin-left: -5px; display: none; font-size: 14px; width: 14px}">&#x25c6;</span></div>
-        <div id="census-max">max</div>
-  </div>
+
+</div>
+
+
+
 <script>
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
       }, {
-        'featureType': 'landscape',
+        'featureType': 'landscape'
         'elementType': 'geometry',
         'stylers': [{'visibility': 'on'}, {'color': '#fcfcfc'}]
       }, {
@@ -201,13 +200,6 @@ var mapStyle = [{
       }
 
     </script>
-    <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Kyc9KMvnH5Kq61zueqOy3-38Me81siw&&callback=initMap">
-    </script>
-</h2>
-
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Kyc9KMvnH5Kq61zueqOy3-38Me81siw&&callback=initMap">
+</script>

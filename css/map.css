@@ -1,0 +1,84 @@
+.map-wrapper {
+  background-color: #ccc;
+  height: calc(80vh);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.map {
+  display: block;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.map-wrapper .map-controls {
+  background-color: #fff;
+  border-radius: 4px;
+  left: 110px;
+  padding: 15px;
+  top: 10px;
+  width: 360px;
+  z-index: 2;
+}
+
+.map-controls select {
+  display: block;
+  width: 100%;
+}
+
+/*
+.map-summary {
+  margin: 50px 0;
+}
+*/
+
+.map-wrapper .nicebox {
+  position: absolute;
+  text-align: center;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 13px;
+  z-index: 5;
+  box-shadow: 0 4px 6px -4px #333;
+  padding: 5px 10px;
+  background: rgb(255,255,255);
+  background: linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%);
+  border: rgb(229, 229, 229) 1px solid;
+}
+
+
+.map #data-box {
+  top: 10px;
+  left: 500px;
+  height: 45px;
+  line-height: 45px;
+  display: none;
+}
+
+
+.map-wrapper #legend { display: flex; display: -webkit-box; padding-top: 7px }
+
+.map-wrapper .color-key {
+  background: linear-gradient(to right,
+    hsl(5, 69%, 54%) 0%,
+    hsl(29, 71%, 51%) 17%,
+    hsl(54, 74%, 47%) 33%,
+    hsl(78, 76%, 44%) 50%,
+    hsl(102, 78%, 41%) 67%,
+    hsl(127, 81%, 37%) 83%,
+    hsl(151, 83%, 34%) 100%);
+  flex: 1;
+  -webkit-box-flex: 1;
+  margin: 0 5px;
+  text-align: left;
+  font-size: 1.0em;
+  line-height: 1.0em;
+}
+.map-wrapper #data-value { font-size: 2.0em; font-weight: bold }
+.map-wrapper #data-label { font-size: 2.0em; font-weight: normal; padding-right: 10px; }
+.map-wrapper #data-label:after { content: ':' }
+.map-wrapper #data-caret { margin-left: -5px; display: none; font-size: 14px; width: 14px}
