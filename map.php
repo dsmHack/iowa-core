@@ -1,28 +1,41 @@
-<?php ?>
-<div class="map-wrapper">
+<?php
+  $story_array = array();
+  $s_query = new WP_Query(array(
+    'post_type' => 'story',
+    'posts_per_page' => -1,
+  ));
+?>
 
+<?php if ($s_query->have_posts()){ ?>
+  <?php while ($s_query->have_posts()) { ?>
+    <?php $s_query->the_post();?>
+    <?php $story_array[] = $s_query;?>
+  <?php } ?>
+<?php } ?>
+<?php wp_reset_postdata();?>
+
+<div class="map-wrapper">
   <div id="controls" class="nicebox map-controls">
     <select id="census-variable">
       <option value="https://data.iowa.gov/resource/aeyn-twxp">Unemployment Benefit Paid</option>
     </select>
-    <div id="legend">
-      <div class="census-min" id="census-min">min</div>
-      <div class="color-key">
-        <span id="data-caret">&#x25c6;</span>
-      </div>
-      <div class="census-max" id="census-max">max</div>
-    </div>
   </div>
-
   <div id="map" class="map">
     Google map here
   </div>
-
+  <div class="legend" id="legend">
+    <div class="census-min" id="census-min">min</div>
+    <div class="color-key">
+      <span id="data-caret">&#x25c6;</span>
+    </div>
+    <div class="census-max" id="census-max">max</div>
+  </div>
 </div>
 
-
-
 <script>
+var story_array = <?php echo json_encode($story_array);?>;
+console.log('hello', story_array);
+
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
       }, {
@@ -62,12 +75,11 @@ var mapStyle = [{
         loadMapShapes();
       }
 
-      function loadMapShapes() {
+      async function loadMapShapes() {
           // load US state outline polygons from a GeoJson file
-          map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName:'name'},
-          function(features) {
-            loadCensusData();
-          });
+         await  map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName:'name'}
+         await loadCensusData();
+
       }
 
       function loadCensusData() {
