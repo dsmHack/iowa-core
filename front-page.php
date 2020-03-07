@@ -28,10 +28,12 @@
         <?php $story_query->the_post();?>
           <li>
             <article>
-              <?php if (has_post_thumbnail()) { ?>
+              <?php $image = get_field('teaser_photo');?>
+
+              <?php if ($image) { ?>
                 <div class="story-image">
                   <a href="<?php the_permalink();?>" title="<?php the_title(); ?>">
-                    <?php the_post_thumbnail(array(120,120));?>
+                    <?php echo $image;?>
                   </a>
                 </div>
               <?php } ?>

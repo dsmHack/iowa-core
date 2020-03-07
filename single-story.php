@@ -14,28 +14,63 @@
       <?php the_title(); ?>
     </a>
   </h1>
-
   <?php the_content();?>
-  - Date
-  - Name(s)
-  - Industry Type
-  - Minority Group
-  - Location (Address, City, Zip)
-  - Upload video
-  - Upload photo
-  - Description/story tect
-  - Headline
-  - Tags (able to select multiple)
-      - Small Business
-      - Entertainment
-      - Minority Owned
-      - Women Owned
-      - Veteran Owned
-      - Community
-      - Impact
-      - Supplier Diversity
 
-  <h2>Do we need a pagebuilder?</h2>
-  <h2>SHOW ME THE TAXONOMY THAT I BELONG TO</h2>
+Date<br />
+<?php the_field('date');?>
+
+Contributors<br />
+<?php if(have_rows('contributors')) { ?>
+  <ul>
+    <?php while(have_rows('contributors')) { ?>
+      <li>
+        <?php the_row();?>
+        <?php echo get_sub_field('contributor');?>
+      </li>
+    <?php } ?>
+  </ul>
+<?php } ?>
+
+Minority Group<br />
+<?php the_field('minority_group');?>
+
+Street Address<br />
+<?php the_field('street_address');?>
+
+City<br />
+<?php the_field('city');?>
+
+Zip<br />
+<?php the_field('zip');?>
+
+Image Gallery:
+<?php
+  $images = get_field('image_gallery');
+  $size = 'full';
+?>
+<?php if($images){ ?>
+  <ul>
+    <?php foreach($images as $image_id){ ?>
+      <li>
+        <?php echo wp_get_attachment_image($image_id, $size);?>
+      </li>
+    <?php } ?>
+  </ul>
+<?php } ?>
+
+Tags/Categories
+<?php
+  $terms = get_the_terms( $post->ID , 'category');
+
+  foreach ($terms as $term) {
+    echo $term->name;
+  }
+?>
+
+Industry Type (TBD) <br />
+
+  <h2>SHOW ME THE COMMUNITY THAT I BELONG TO</h2>
+
+
 
 <?php get_footer();?>
