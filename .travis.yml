@@ -2,7 +2,11 @@ language: minimal
 
 deploy:
   provider: script
-  skip_cleanup: true
+  before_install:
+    - sudo apt-get install git-ftp
+  addons:
+    apt:
+      update: true
   script: sh .scripts/deploy.sh
   on:
     branch: master
