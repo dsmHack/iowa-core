@@ -56,9 +56,7 @@
                   <a href="<?php echo get_permalink($story->ID);?>">
                     <?php $image = get_field('teaser_photo',  $story->ID);?>
                     <?php if(!empty($image)) { ?>
-                      <div class="image">
-                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-                      </div>
+                        <img class="img-fluid" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                     <?php } ?>
                   </a>
                   <h3>
