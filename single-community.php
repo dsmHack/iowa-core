@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col">
       <div class="community-information-module">
-        <?php $response = wp_remote_get("https://data.iowa.gov/resource/yhbr-3t8a.json?$query=SELECT * WHERE primary_long_dec <= -93.52568000000001 and primary_long_dec >= -93.94568 AND primary_lat_dec >= 41.360915999999996 and primary_lat_dec <= 41.780916 and year == 2018") ?>
+        <?php $response = wp_remote_get("https://data.iowa.gov/resource/yhbr-3t8a.json?$query=SELECT%20*%20WHERE%20primary_long_dec%20%3C=%20-93.52568000000001%20and%20primary_long_dec%20%3E=%20-93.94568%20AND%20primary_lat_dec%20%3E=%2041.360915999999996%20and%20primary_lat_dec%20%3C=%2041.780916%20and%20year%20==%202018") ?>
         <?php $body = wp_remote_retrieve_body($response) ?>
         <?php $data = json_decode($body); ?>
         <?php echo $body?>
