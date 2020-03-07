@@ -307,6 +307,7 @@ $s_query = new WP_Query(array(
     jQuery(document).ready(function() {
       const necessaryFunctionWrapper = async function() {
         jQuery('#census-variable').change(function() {
+          clearCensusData();
           const censusChoice = jQuery(this).val();
           if (censusChoice === 'Unemployment Benefit Paid') {
             loadUnemploymentBenefitDollarsPerCounty();
