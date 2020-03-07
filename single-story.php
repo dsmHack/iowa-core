@@ -103,8 +103,13 @@
           <?php the_excerpt();?>
         </div>
       </article>
+
+      <?php break;?>
+
     <?php } ?>
+
     <?php wp_reset_postdata();?>
+
   </div>
 <?php } ?>
 
