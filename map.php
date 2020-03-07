@@ -36,6 +36,12 @@ $s_query = new WP_Query(array(
             <div class="census-max" id="census-max">max</div>
         </div>
     </div>
+    <div id="data-box">
+        <label id="data-label" for="data-value"></label>
+        <span id="data-value"></span>
+    </div>
+
+    
     <div id="map" class="map">
         Google map here
     </div>
@@ -141,8 +147,10 @@ $s_query = new WP_Query(array(
                    let feature = map.data.getFeatureById(county_name);
                    if (typeof feature != 'undefined') {
                        // update the existing row with the new data
-                       feature.setProperty('census_variable', censusVariable);
-                       map.data.setStyle(styleFeature);
+                        feature.setProperty('census_variable', censusVariable);
+                        map.data.setStyle(styleFeature);
+                        map.data.addListener('mouseover', mouseInToRegion);
+                        map.data.addListener('mouseout', mouseOutOfRegion);
                    }
 
                }
@@ -199,9 +207,9 @@ $s_query = new WP_Query(array(
 
         var outlineWeight = 0.5, zIndex = 1;
 
-        /*if (feature.getProperty('state') === 'hover') {
+        if (feature.getProperty('state') === 'hover') {
           outlineWeight = zIndex = 2;
-        }*/
+        }
 
         return {
             strokeWeight: outlineWeight,
