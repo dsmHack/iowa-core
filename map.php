@@ -42,8 +42,7 @@ $s_query = new WP_Query(array(
 </div>
 
 <script>
-    var story_array = <?php echo json_encode($story_associative_array);?>;
-    console.log('hello', story_array);
+    var storyArray = <?php echo json_encode($story_associative_array);?>;
 
     var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
@@ -61,8 +60,9 @@ $s_query = new WP_Query(array(
 
     function initMap() {
         var centerOfIowa = {lat: 41.8780, lng: -93.0977};
-        var centerOfDesMoines = {lat: 41.5868, lng: -93.6250};
-        var storyLocations = [centerOfIowa, centerOfDesMoines];
+        
+        // var centerOfDesMoines = {lat: 41.5868, lng: -93.6250};
+        // var storyLocations = [centerOfIowa, centerOfDesMoines];
 
         var strictIowaBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng(40.566435, -96.495775),
@@ -71,12 +71,38 @@ $s_query = new WP_Query(array(
 
         map = new google.maps.Map(
             document.getElementById('map'), {zoom: 3, center: centerOfIowa});
+        
+    /* 
+        yikes
+    */
+   //import the storyARry to get zip and to attach story.link to the clickhandler
+        async function createStoryMapMarker(story) {
+            let mycall = `https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${story.zip}`
 
-        for (var location = 0; location < storyLocations.length; location++) {
-            var marker = new google.maps.Marker({position: storyLocations[location], map: map});
-            marker.addListener('click', function () {
-                // TODO: Add link to story
+            await fetch(mycall)
+            .then(response => response.json())
+            .then(function(data) {
+                var latLngObj = {
+                    lat: data.records[0].geometry.coordinates[1],
+                    lng: data.records[0].geometry.coordinates[0]
+                }
+            
+                let marker = new google.maps.Marker({position: latLngObj, map: map});
+                marker.addListener('click', function () {
+                    window.location.href = story.link;
             });
+                return;
+            })
+              .catch(error => console.error(error));
+        }
+    /*
+        yikes end
+    */
+        // this should be over each Story in  storyArray, hard-coded values for now
+        for (var i = 0; i < storyArray.length; i++) {
+            
+            var marker = createStoryMapMarker(storyArray[i]);
+            
         }
 
         map.fitBounds(strictIowaBounds, 0);
