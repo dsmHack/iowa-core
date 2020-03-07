@@ -26,6 +26,16 @@
   z-index: 2;
 }
 
+.map-wrapper .legend {
+  background-color: #fff;
+  border-radius: 4px;
+  bottom: 30px;
+  display: block;
+  left: 20px;
+  position: absolute;
+  z-index: 2;
+}
+
 .map-controls select {
   display: block;
   width: 100%;
@@ -58,9 +68,6 @@
   line-height: 45px;
   display: none;
 }
-
-
-.map-wrapper #legend { display: flex; display: -webkit-box; padding-top: 7px }
 
 .map-wrapper .color-key {
   background: linear-gradient(to right,
