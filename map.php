@@ -26,8 +26,8 @@ $s_query = new WP_Query(array(
 <div class="map-wrapper">
     <div id="controls" class="nicebox map-controls">
         <select id="census-variable">
-            <option value="Unemployment Benefit Paid">Unemployment Benefit Paid</option>
-            <option value="Unemployment Statistics">Unemployment Statistics</option>
+            <option value="unemployment-benefits-paid">Number of unemployment benefits paid</option>
+            <option value="unemployment-statistics">Recorded unemployments in the last available month</option>
         </select>
         <div class="legend" id="legend">
             <div class="census-min" id="census-min">min</div>
@@ -276,9 +276,9 @@ $s_query = new WP_Query(array(
         jQuery('#census-variable').change(function() {
           clearCensusData();
           const censusChoice = jQuery(this).val();
-          if (censusChoice === 'Unemployment Benefit Paid') {
+          if (censusChoice === 'unemployment-benefits-paid') {
             loadUnemploymentBenefitDollarsPerCounty();
-          } else if (censusChoice === 'Unemployment Statistics') {
+          } else if (censusChoice === 'unemployment-statistics') {
             loadUnemploymentStatisticData();
           }
         });
