@@ -128,7 +128,7 @@ $s_query = new WP_Query(array(
            censusData.shift(); // the first row contains column names
            censusData.forEach(function (row) {
                if (row.month_ending === mostRecentDate) {
-                   var censusVariable = parseFloat(row.benefits_paid * -1);
+                   var censusVariable = parseFloat(row.benefits_paid);
                    var countyName = row.county_name;
 
                    if (censusVariable < censusMin) {
@@ -151,10 +151,10 @@ $s_query = new WP_Query(array(
            });
 
            // update and display the legend
-           var legendCensusMin = censusMin * -1;
-           document.getElementById('census-min').textContent = legendCensusMin.toLocaleString();
-           var legendCensusMax = censusMax * -1;
-           document.getElementById('census-max').textContent = legendCensusMax.toLocaleString();
+           document.getElementById('census-min').textContent =
+               censusMin.toLocaleString();
+           document.getElementById('census-max').textContent =
+               censusMax.toLocaleString();
        };
        xhr.send();
     }
