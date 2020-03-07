@@ -16,22 +16,23 @@
   </div>
 </div>
 
-Zip codes:<br />
-<?php if(have_rows('zip_codes')) { ?>
-  <ul>
-    <?php while(have_rows('zip_codes')) { ?>
-      <li>
-        <?php the_row();?>
-        <?php echo get_sub_field('zip_code');?>
-      </li>
-    <?php } ?>
-  </ul>
-<?php } ?>
-
 <div class="container">
   <div class="row">
     <div class="col">
       <div class="community-information-module">
+
+        Zip codes:<br />
+        <?php if(have_rows('zip_codes')) { ?>
+          <ul>
+            <?php while(have_rows('zip_codes')) { ?>
+              <li>
+                <?php the_row();?>
+                <?php echo get_sub_field('zip_code');?>
+              </li>
+            <?php } ?>
+          </ul>
+        <?php } ?>
+
         Prominent Businesses:<br />
         <?php if(have_rows('prominent_businesses')) { ?>
           <ul>
@@ -52,36 +53,38 @@ Zip codes:<br />
 
         Median Population Age<br />
         <?php echo get_field('median_population_age');?>
-
-        <h2>Stories from This Community</h2>
-        <?php
-          $stories = get_posts(array(
-            'post_type' => 'story',
-            'meta_query' => array(
-                array(
-                    'key' => 'community',
-                    'value' => '"' . get_the_ID() . '"',
-                    'compare' => 'LIKE'
-                )
-            )
-          ));
-        ?>
       </div>
     </div>
   </div>
 </div>
 
+<?php
+  $stories = get_posts(array(
+    'post_type' => 'story',
+    'meta_query' => array(
+        array(
+            'key' => 'community',
+            'value' => '"' . get_the_ID() . '"',
+            'compare' => 'LIKE'
+        )
+    )
+  ));
+?>
 <?php if($stories) { ?>
   <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center">Stories from This Community</h2>
+        <hr />
+      </div>
+    </div>
     <div class="row">
       <?php foreach($stories as $story) { ?>
         <article class="col-md-4 mb-2">
           <a href="<?php echo get_permalink($story->ID);?>">
             <?php $image = get_field('teaser_photo',  $story->ID);?>
             <?php if(!empty($image)) { ?>
-              <div class="image">
-                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-              </div>
+              <img class="img-fluid" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
             <?php } ?>
           </a>
           <h3>
