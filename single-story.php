@@ -46,7 +46,7 @@
           </ul>
         <?php } ?>
       </div>
-      <div class="content-block">
+      <div class="content-block mb-4">
         <?php the_content();?>
       </div>
     </div>

@@ -5,6 +5,11 @@
   <div class="row">
     <div class="col">
       <div class="title-block">
+        <p>
+          <small>
+            <a href="/">Home</a> / <strong><?php the_title();?></strong>
+          </small>
+        </p>
         <h1 class="text-center">
           <?php the_title(); ?>
         </h1>
