@@ -1,8 +1,5 @@
 language: minimal
 os: osx
-before_install:
-  - curl https://raw.githubusercontent.com/git-ftp/git-ftp/master/git-ftp > /bin/git-ftp
-  - chmod 755 /bin/git-ftp
 deploy:
   provider: script
   script: sh .scripts/deploy.sh
