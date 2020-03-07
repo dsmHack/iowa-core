@@ -26,8 +26,10 @@
     <div class="col">
       <div class="community-information-module">
         <script> 
+          
           var county = <?php get_field('county') ?>
-          fetch(`https://data.iowa.gov/resource/st2k-2ti2.json?$query= SELECT * where date between '2018-01-10T12:00:00' and '2019-01-10T14:00:00' and variable_code = 'CAINC1-3' and name="${county}, IA"`)
+          console.log(county);
+          fetch(`https://data.iowa.gov/resource/st2k-2ti2.json?$query= SELECT * where date between '2018-01-10T12:00:00' and '2019-01-10T14:00:00' and variable_code = 'CAINC1-3' and name='${county}, IA'`)
           .then(response=>response.json())
           .then(function(data){
             console.log(data);
