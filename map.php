@@ -177,16 +177,14 @@ $s_query = new WP_Query(array(
     }
 
     function loadUnemploymentStatisticData(){
-        console.log('entering');
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://data.iowa.gov/resource/tjnj-ed6z.json?$query=SELECT * where area_type=\'County\'');
         xhr.onload = function () {
-            console.log('onload');
-            var results = getGreatestYearGreatestMonthData(JSON.parse(xhr.responseText));
-            console.log('results:', results);
+            //var results = getGreatestYearGreatestMonthData(JSON.parse(xhr.responseText));
+            var results = JSON.parse(xhr.responseText);
+
             results.forEach(function (row) {
-                var censusVariable = parseFloat(row.unemployment_rate);
-                console.log('censusVariable:', censusVariable);
+                var censusVariable = parseFloat(row.unemployment);
                 var county_name = row.area_name.replace(' County', '');
                 // keep track of min and max values
                 if (censusVariable < censusMin) {
