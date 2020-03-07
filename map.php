@@ -84,11 +84,11 @@ $s_query = new WP_Query(array(
         await loadMapShapes();
     }
 
-    async function loadMapShapes() {
+    function loadMapShapes() {
         // load US state outline polygons from a GeoJson file
-        await map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName: 'name'});
-        await loadCensusData();
-
+        map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName: 'name'}, async function() {
+          await loadCensusData();
+        });
     }
 
     function loadCensusData() {
