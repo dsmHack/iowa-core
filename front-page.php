@@ -29,16 +29,6 @@
     <div class="container">
       <?php while ($community_query->have_posts()) { ?>
         <?php $community_query->the_post();?>
-          <div class="row">
-            <div class="col">
-              <h2 class="text-center">
-                <a href="<?php the_permalink();?>">
-                  <?php the_title();?>
-                </a>
-              </h2>
-              <hr />
-            </div>
-          </div>
           <?php
             $stories = get_posts(array(
               'post_type' => 'story',
@@ -52,6 +42,16 @@
             ));
           ?>
           <?php if( $stories ): ?>
+            <div class="row">
+              <div class="col">
+                <h2 class="text-center">
+                  <a href="<?php the_permalink();?>">
+                    <?php the_title();?>
+                  </a>
+                </h2>
+                <hr />
+              </div>
+            </div>
             <div class="row">
             <?php foreach($stories as $story): ?>
                 <article class="col-md-4 mb-2">
