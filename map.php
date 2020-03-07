@@ -16,7 +16,7 @@
               'community' => get_field('community'), 
               'zip' => get_field('zip'), 
           ); 
-      $story_associative_array = array_push($story_associative_array, $story_array)  
+      array_push($story_associative_array, $story_array)  
 
           ?>
   <?php } ?>
@@ -42,7 +42,7 @@
 </div>
 
 <script>
-var story_array = <?php echo json_encode($story_array);?>;
+var story_array = <?php echo json_encode($story_associative_array);?>;
 console.log('hello', story_array);
 
 var mapStyle = [{
