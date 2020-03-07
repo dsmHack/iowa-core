@@ -117,7 +117,7 @@
               <?php if(!empty($image)){ ?>
                 <div class="col-md">
                   <a href="<?php echo get_permalink($post->ID);?>">
-                    <img class="img-fluid" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <img class="img-fluid mb-4" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                   </a>
                 </div>
               <?php } ?>

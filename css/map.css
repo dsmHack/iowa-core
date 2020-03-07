@@ -1,3 +1,7 @@
+#data-box {
+  display: none;
+}
+
 .map-wrapper {
   background-color: #ccc;
   height: calc(80vh);
@@ -73,15 +77,6 @@
   background: rgb(255,255,255);
   background: linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%);
   border: rgb(229, 229, 229) 1px solid;
-}
-
-
-.map #data-box {
-  top: 10px;
-  left: 500px;
-  height: 45px;
-  line-height: 45px;
-  display: none;
 }
 
 .map-wrapper .color-key {
