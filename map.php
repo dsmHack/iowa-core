@@ -1,10 +1,6 @@
 <?php ?>
-<h2>
-  <div id="map" class="map">
-    GOOGLE MAP HERE
-  </div>
-    <style>
-      #map { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+<head>    <style>
+      html, body, #map { height: 100%; margin: 0; padding: 0; overflow: hidden; }
         .nicebox {
           position: absolute;
           text-align: center;
@@ -55,7 +51,11 @@
         #data-label { font-size: 2.0em; font-weight: normal; padding-right: 10px; }
         #data-label:after { content: ':' }
         #data-caret { margin-left: -5px; display: none; font-size: 14px; width: 14px}
-    </style>
+    </style></head>
+<h2>
+  <div id="map" class="map">
+    GOOGLE MAP HERE
+  </div>
 <script>
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
