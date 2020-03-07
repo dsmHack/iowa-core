@@ -26,7 +26,7 @@
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
       }, {
-        'featureType': 'landscape'
+        'featureType': 'landscape',
         'elementType': 'geometry',
         'stylers': [{'visibility': 'on'}, {'color': '#fcfcfc'}]
       }, {
