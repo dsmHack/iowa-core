@@ -1,5 +1,6 @@
 # Iowa C.O.R.E.
 2020 DSM Hack repo for Iowa C.O.R.E.
+[Rethink Iowa Website](https://impact.rethinkiowa.org/)
 ## Build Status
 [![Build Status](https://travis-ci.org/dsmHack/iowa-core.svg?branch=master)](https://travis-ci.org/dsmHack/iowa-core)
 
