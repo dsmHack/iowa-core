@@ -1,13 +1,29 @@
 <?php get_header(); ?>
 <?php the_post();?>
 
+<?php $communityLinkHTML = '';?>
+<?php $posts = get_field('community');?>
+
+<?php if($posts) { ?>
+  <?php foreach($posts as $post){ ?>
+    <?php setup_postdata($post);?>
+    <?php $communityLinkHTML .= '<a href="';?>
+    <?php $communityLinkHTML .= get_the_permalink($post->ID);?>
+    <?php $communityLinkHTML .= '">';?>
+    <?php $communityLinkHTML .= get_the_title($post->ID);?>
+    <?php $communityLinkHTML .= '</a>';?>
+  <?php } ?>
+<?php } ?>
+
+<?php wp_reset_postdata();?>
+
 <div class="container">
   <div class="row">
     <div class="col">
       <div class="title-block">
         <p>
           <small>
-            <a href="/">Home</a> / <a href="">Community</a> / <strong><?php the_title(); ?></strong>
+            <a href="/">Home</a> / <?php echo $communityLinkHTML;?> / <strong><?php the_title(); ?></strong>
           </small>
         </p>
         <h1 class="text-center">
@@ -88,11 +104,11 @@
 <?php if($posts) { ?>
   <div class="community-module">
     <h2>About the Community</h2>
-    <?php foreach( $posts as $post){ ?>
+    <?php foreach($posts as $post){ ?>
       <?php setup_postdata($post);?>
       <article>
-        <a href="<?php echo get_permalink($story->ID);?>">
-          <?php $image = get_field('image',  $story->ID);?>
+        <a href="<?php echo get_permalink($post->ID);?>">
+          <?php $image = get_field('image', $post->ID);?>
           <?php if(!empty($image)) { ?>
             <div class="image">
               <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
@@ -112,9 +128,7 @@
       <?php break;?>
 
     <?php } ?>
-
     <?php wp_reset_postdata();?>
-
   </div>
 <?php } ?>
 

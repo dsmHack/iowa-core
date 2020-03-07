@@ -223,14 +223,15 @@ $s_query = new WP_Query(array(
     }
 
     /**
-     * Responds to the mouse-in event on a map shape (state).
+     * Responds to the mouse-in event on a map shape (county).
      *
      * @param {?google.maps.MouseEvent} e
      */
     function mouseInToRegion(e) {
         // set the hover state so the setStyle function can change the border
         e.feature.setProperty('state', 'hover');
-
+        console.log(e.feature);
+        
         var percent = (e.feature.getProperty('census_variable') - censusMin) /
             (censusMax - censusMin) * 100;
 
