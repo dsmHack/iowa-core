@@ -25,11 +25,13 @@
   <div class="row">
     <div class="col">
       <div class="community-information-module">
-        <?php $response = wp_remote_get("https://data.iowa.gov/resource/yhbr-3t8a.json?$query=SELECT%20*%20WHERE%20primary_long_dec%20%3C=%20-93.52568000000001%20and%20primary_long_dec%20%3E=%20-93.94568%20AND%20primary_lat_dec%20%3E=%2041.360915999999996%20and%20primary_lat_dec%20%3C=%2041.780916%20and%20year%20==%202018") ?>
-        <?php $body = wp_remote_retrieve_body($response) ?>
-        <?php $data = json_decode($body); ?>
-        <?php echo $body?>
-
+        <script> 
+          fetch(`https://data.iowa.gov/resource/st2k-2ti2.json?$query= SELECT * where date between '2018-01-10T12:00:00' and '2019-01-10T14:00:00' and variable_code = 'CAINC1-3'`)
+          .then(response=>response.json())
+          .then(function(data){
+            console.log(data);
+          })
+        </script>
         Zip codes:<br />
         <?php if(have_rows('zip_codes')) { ?>
           <ul>
