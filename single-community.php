@@ -127,11 +127,11 @@
               <img class="img-fluid mb-2" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
             <?php } ?>
           </a>
-          <h3>
+          <h4>
             <a href="<?php echo get_permalink($story->ID);?>">
               <?php echo get_the_title($story->ID);?>
             </a>
-          </h3>
+          </h4>
           <p>
             <?php echo get_the_excerpt($story->ID);?>
           </p>

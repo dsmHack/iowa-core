@@ -32,7 +32,7 @@
 ));?>
 
 <?php if ($community_query->have_posts()) { ?>
-  <div class="story-post-module">
+  <div class="story-post-module mb-4">
     <div class="container">
       <?php while ($community_query->have_posts()) { ?>
         <?php $community_query->the_post();?>
@@ -61,7 +61,7 @@
             </div>
             <div class="row">
             <?php foreach($stories as $story): ?>
-                <article class="col-md-4 mb-2">
+                <article class="col-md-4 mb-4">
                   <a href="<?php echo get_permalink($story->ID);?>">
                     <?php $image = get_field('teaser_photo',  $story->ID);?>
                     <?php if(!empty($image)) { ?>
