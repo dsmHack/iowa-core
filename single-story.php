@@ -16,9 +16,6 @@
   </h1>
   <?php the_content();?>
 
-Teaser Photo<br />
-<?php the_field('teaser_photo');?>
-
 Date<br />
 <?php the_field('date');?>
 
