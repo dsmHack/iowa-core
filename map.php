@@ -83,7 +83,7 @@ var mapStyle = [{
           new google.maps.LatLng(43.493584, -90.698676)
         );
 
-        var map = new google.maps.Map(
+         map = new google.maps.Map(
             document.getElementById('map'), {zoom: 3, center: centerOfIowa});
 
         for (var location = 0; location < storyLocations.length; location++) {
