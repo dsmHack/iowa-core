@@ -52,7 +52,7 @@
           <?php if( $stories ): ?>
             <div class="row">
             <?php foreach( $stories as $story): ?>
-                <article class="col-4">
+                <article class="col-md-4">
                   <a href="<?php echo get_permalink($story->ID);?>">
                     <?php $image = get_field('teaser_photo',  $story->ID);?>
                     <?php if(!empty($image)) { ?>
