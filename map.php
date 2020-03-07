@@ -1,33 +1,30 @@
 <?php ?>
 <h2>
+<div id="controls" class="nicebox">
+      <div>
+      <select id="census-variable">
+        <option value="https://data.iowa.gov/resource/aeyn-twxp">Unemployment Benefit Paid</option>
+      </select>
+      </div>
+      <div id="legend" style="display: flex; display: -webkit-box; padding-top: 7px ">
+        <div id="census-min">min</div>
+        <div class="color-key"><span id="data-caret">&#x25c6;</span></div>
+        <div id="census-max">max</div>
+      </div>
+    </div>
+    <div id="data-box" class="nicebox">
+      <label id="data-label" for="data-value"></label>
+      <span id="data-value"></span>
+    </div>
+    <div id="map"></div>
   <div id="map" class="map">
     GOOGLE MAP HERE
-  </div>
-  <div id="legend" style=" { display: flex; display: -webkit-box; padding-top: 7px }">
-        <div id="census-min">min</div>
-        <div style="{
-          background: linear-gradient(to right,
-            hsl(5, 69%, 54%) 0%,
-            hsl(29, 71%, 51%) 17%,
-            hsl(54, 74%, 47%) 33%,
-            hsl(78, 76%, 44%) 50%,
-            hsl(102, 78%, 41%) 67%,
-            hsl(127, 81%, 37%) 83%,
-            hsl(151, 83%, 34%) 100%);
-          flex: 1;
-          -webkit-box-flex: 1;
-          margin: 0 5px;
-          text-align: left;
-          font-size: 1.0em;
-          line-height: 1.0em;
-        }"><span id="data-caret" sytle="{ margin-left: -5px; display: none; font-size: 14px; width: 14px}">&#x25c6;</span></div>
-        <div id="census-max">max</div>
   </div>
 <script>
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
       }, {
-        'featureType': 'landscape',
+        'featureType': 'landscape'
         'elementType': 'geometry',
         'stylers': [{'visibility': 'on'}, {'color': '#fcfcfc'}]
       }, {
