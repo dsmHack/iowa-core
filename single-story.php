@@ -8,17 +8,12 @@
         <h1 class="text-center">
           <?php the_title(); ?>
         </h1>
-      </div>
-      <div class="story-information-module">
-        <?php $story_date = the_field('date');?>
+        <?php $story_date = get_field('date');?>
         <?php if($story_date) { ?>
-          <h4>Date</h4>
           <p><?php echo $story_date;?></p>
         <?php } ?>
-
         <?php if(have_rows('contributors')) { ?>
-          <h4>Contributors</h4>
-          <ul>
+          <ul class="story-contributor-list list-unstyled text-center">
             <?php while(have_rows('contributors')) { ?>
               <li>
                 <?php the_row();?>
@@ -27,6 +22,11 @@
             <?php } ?>
           </ul>
         <?php } ?>
+      </div>
+      <div class="content-block">
+        <?php the_content();?>
+      </div>
+      <div class="story-information-module">
         <h4>Minority Group</h4>
         <p><?php the_field('minority_group');?></p>
         <h4>Address</h4>
@@ -36,15 +36,12 @@
           <?php the_field('zip');?>
         </p>
       </div>
-      <div class="content-block">
-        <?php the_content();?>
-      </div>
     </div>
   </div>
 </div>
 
 <?php $images = get_field('image_gallery');?>
-  <?php if( $images ) { ?>
+  <?php if($images) { ?>
     <div class="container">
       <div class="row">
         <div class="col">
@@ -55,7 +52,7 @@
         <?php foreach( $images as $image ){ ?>
           <div class="col-md-4">
             <a href="<?php echo esc_url($image['url']); ?>">
-               <img class="img-fluid" src="<?php echo esc_url($image['sizes']['full']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+               <img class="img-fluid" src="<?php echo esc_url($image['sizes']['large']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
             </a>
             <p>
               <?php echo esc_html($image['caption']); ?>

@@ -32,8 +32,11 @@ function register_styles() {
     wp_register_style('map', get_template_directory_uri() . '/css/map.css', array(), '1.0', 'all');
     wp_enqueue_style('map');
 
-    wp_register_style('storyposts', get_template_directory_uri() . '/css/story-post-module.css', array(), '1.0', 'all');
-    wp_enqueue_style('storyposts');
+    wp_register_style('story-post-module', get_template_directory_uri() . '/css/story-post-module.css', array(), '1.0', 'all');
+    wp_enqueue_style('story-post-module');
+
+    wp_register_style('contributor-list', get_template_directory_uri() . '/css/story-contributor-list.css', array(), '1.0', 'all');
+    wp_enqueue_style('contributor-list');
 
     wp_register_style('communitymodule', get_template_directory_uri() . '/css/community-module.css', array(), '1.0', 'all');
     wp_enqueue_style('communitymodule');

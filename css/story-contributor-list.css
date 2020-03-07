@@ -1,0 +1,10 @@
+.story-contributor-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.story-contributor-list li {
+  margin: 0 .5em;
+}
