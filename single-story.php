@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container mb-4">
   <div class="row">
     <div class="col">
       <div class="story-information-module">
@@ -83,9 +83,10 @@
       <div class="row">
         <div class="col">
           <h2 class="text-center">Gallery</h2>
+          <hr />
         </div>
       </div>
-      <div class="grid">
+      <div class="grid mb-4">
         <div class="grid-sizer"></div>
         <div class="gutter-sizer"></div>
         <?php foreach( $images as $image ){ ?>
@@ -102,34 +103,48 @@
 
 <?php $posts = get_field('community');?>
 <?php if($posts) { ?>
-  <div class="community-module">
-    <h2>About the Community</h2>
-    <?php foreach($posts as $post){ ?>
-      <?php setup_postdata($post);?>
-      <article>
-        <a href="<?php echo get_permalink($post->ID);?>">
-          <?php $image = get_field('image', $post->ID);?>
-          <?php if(!empty($image)) { ?>
-            <div class="image">
-              <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+<div class="container mb-4">
+  <div class="row">
+    <div class="col">
+      <div class="community-module">
+        <h2 class="text-center">About the Community</h2>
+        <hr />
+        <?php foreach($posts as $post){ ?>
+          <?php setup_postdata($post);?>
+          <article>
+            <div class="row">
+              <div class="col-md-6">
+                <a href="<?php echo get_permalink($post->ID);?>">
+                  <?php $image = get_field('image', $post->ID);?>
+                  <?php if(!empty($image)) { ?>
+                    <div class="image">
+                      <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                    </div>
+                  <?php } ?>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <h3>
+                  <a href="<?php the_permalink(); ?>">
+                    <?php the_title(); ?>
+                  </a>
+                </h3>
+                <div class="excerpt">
+                  <?php the_excerpt();?>
+                </div>
+              </div>
             </div>
-          <?php } ?>
-        </a>
-        <h2>
-          <a href="<?php the_permalink(); ?>">
-            <?php the_title(); ?>
-          </a>
-        </h2>
-        <div class="excerpt">
-          <?php the_excerpt();?>
-        </div>
-      </article>
+          </article>
 
-      <?php break;?>
+          <?php break;?>
 
-    <?php } ?>
-    <?php wp_reset_postdata();?>
+        <?php } ?>
+        <?php wp_reset_postdata();?>
+      </div>
+    </div>
   </div>
+</div>
+
 <?php } ?>
 
 <?php get_footer();?>
