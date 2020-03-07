@@ -1,10 +1,21 @@
 <?php get_header();?>
 <?php the_post();?>
 
-<?php the_title();?>
-<?php the_content();?>
-
-<?php get_template_part('map');?>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center"><?php the_title();?></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <?php the_content();?>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <?php get_template_part('map');?>
+</div>
 
 <?php $custom_terms = get_terms('community');?>
 
