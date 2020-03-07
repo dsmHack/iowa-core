@@ -60,8 +60,19 @@
         <h4>Minority Group</h4>
         <p><?php the_field('minority_group');?></p>
         <h4>Address</h4>
+          <?php
+            $street = get_field('street_address');
+            $city = get_field('city');
+            $zip = get_field('zip');
+          ?>
         <p>
-          <?php the_field('street_address');?>, <?php the_field('city');?>, <?php the_field('zip');?>
+          <?php if($street) {
+            echo $street . ', ';
+          } ?>
+          <?php if($city) {
+            echo $city . ', ';
+          } ?>
+          <?php if($zip) { echo $zip; } ?>
         </p>
         <?php $terms = wp_get_post_terms($post->ID);?>
         <?php if ($terms) { ?>
