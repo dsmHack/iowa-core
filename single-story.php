@@ -31,9 +31,7 @@
         <p><?php the_field('minority_group');?></p>
         <h4>Address</h4>
         <p>
-          <?php the_field('street_address');?><br />
-          <?php the_field('city');?><br />
-          <?php the_field('zip');?>
+          <?php the_field('street_address');?>, <?php the_field('city');?>, <?php the_field('zip');?>
         </p>
       </div>
     </div>
