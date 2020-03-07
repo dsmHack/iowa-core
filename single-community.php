@@ -24,7 +24,11 @@
 <div class="container mb-4">
   <div class="row">
     <div class="col">
-      <div class="community-information-module">
+      <div class="story-information-module mb-4">
+        <h2 class="text-center">Community Data</h2>
+        <h4>Income per Capita (U.S. Dollars)</h4>
+        <p id="dollars-per-capita-income"></p>
+
         <script>
           var county = <?php echo json_encode(get_field('county'));?>;
 
@@ -34,10 +38,15 @@
           .then(response=>response.json())
           .then(function(data){
             console.log(data);
+
+            var dollarsPerCapitaIncome = data[0].value;
+            var dpci = document.getElementById('dollars-per-capita-income');
+            dpci.textContent = '$' + dollarsPerCapitaIncome;
           })
         </script>
-        Zip codes:<br />
+
         <?php if(have_rows('zip_codes')) { ?>
+          <h4>Zip codes:</h4>
           <ul>
             <?php while(have_rows('zip_codes')) { ?>
               <li>
@@ -48,8 +57,8 @@
           </ul>
         <?php } ?>
 
-        Prominent Businesses:<br />
         <?php if(have_rows('prominent_businesses')) { ?>
+          <h4>Prominent Businesses:</h4>
           <ul>
             <?php while(have_rows('prominent_businesses')) { ?>
               <li>
@@ -60,14 +69,30 @@
           </ul>
         <?php } ?>
 
-        Average Household Income:<br />
-        <?php echo get_field('average_household_income');?>
+        <?php if(get_field('average_household_income')) { ?>
+          <h4>Average Household Income:</h4>
+          <p>
+            <?php the_field('average_household_income');?>
+          </p>
+        <?php } ?>
 
-        School District:<br />
-        <?php echo get_field('school_district');?>
+        <?php if(get_field('school_district')) { ?>
+          <h4>School District:</h4>
+          <p>
+            <?php the_field('school_district');?>
+          </p>
+        <?php } ?>
 
-        Median Population Age<br />
-        <?php echo get_field('median_population_age');?>
+        <?php if(get_field('median_population_age')) { ?>
+          <h4>Median Population Age</h4>
+          <p>
+            <?php the_field('median_population_age');?>
+          </p>
+        <?php } ?>
+
+        <p class="text-center">
+          <small>Information is sourced from <a href="https://data.iowa.gov/">Iowa Census Data</a> and is intended to be as accurate as possible.</small>
+        </p>
       </div>
     </div>
   </div>
