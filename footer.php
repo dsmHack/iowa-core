@@ -2,20 +2,23 @@
           <div class="container">
               <div class="row">
                 <div class="col text-center">
-                    <h2>About Rethink Iowa</h2>
-                    <p>
-                        Boilerplate about Rethink Iowa ipsum vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
-                    </p>
-                    <h2>Contact Us</h2>
-                    <p>
-                        lorem@email.com
-                    </p>
-                    <p>
-                        123 Maint St. Des Moines, IA 50310
-                    </p>
-                    <p>
-                        Copyright &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://www.rethinkiowa.com/">Rethink Iowa</a>
-                    </p>
+                  <h2>About Rethink Iowa</h2>
+                  <?php $page = get_page_by_path('general-info');?>
+                  <?php $footer_query = new WP_Query(array(
+                    'page_id' => $page->ID,
+                  ));?>
+                  <?php if($footer_query -> have_posts()){ ?>
+                    <?php while ($footer_query -> have_posts()){ ?>
+                      <?php $footer_query -> the_post();?>
+                      <p>
+                        <?php the_field('boilerplate');?>
+                      </p>
+                      <p>
+                        Copyright &copy; <script>document.write(new Date().getFullYear())</script> <a href="<?php the_field('link');?>">Rethink Iowa</a>
+                      </p>
+                    <?php } ?>
+                  <?php } ?>
+                  <?php wp_reset_postdata();?>
                 </div>
               </div>
           </div>
