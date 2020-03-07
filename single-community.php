@@ -65,22 +65,28 @@ Median Population Age<br />
 
 ?>
 <?php if( $stories ): ?>
-  <ul>
+  <div class="row">
   <?php foreach( $stories as $story): ?>
-      <li>
-          <a href="<?php echo get_permalink($story->ID);?>">
-            <?php $image = get_field('teaser_photo',  $story->ID);?>
-            <?php if(!empty($image)) { ?>
+      <article class="col-md-4">
+        <a href="<?php echo get_permalink($story->ID);?>">
+          <?php $image = get_field('teaser_photo',  $story->ID);?>
+          <?php if(!empty($image)) { ?>
+            <div class="image">
               <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-            <?php } ?>
-          </a>
+            </div>
+          <?php } ?>
+        </a>
+        <h3>
           <a href="<?php echo get_permalink($story->ID);?>">
             <?php echo get_the_title($story->ID);?>
           </a>
+        </h3>
+        <p>
           <?php echo get_the_excerpt($story->ID);?>
-      </li>
+        </p>
+      </article>
   <?php endforeach; ?>
-  </ul>
+  </div>
 <?php endif; ?>
 
 <?php get_footer();?>
