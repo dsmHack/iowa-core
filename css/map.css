@@ -11,6 +11,23 @@
   height: 100%;
   margin: 0;
   padding: 0;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.map-wrapper .map-controls {
+  background-color: #fff;
+  border-radius: 4px;
+  left: 110px;
+  padding: 15px;
+  top: 10px;
+  width: 360px;
+  z-index: 2;
+}
+
+.map-controls select {
+  display: block;
   width: 100%;
 }
 
@@ -33,12 +50,7 @@
   border: rgb(229, 229, 229) 1px solid;
 }
 
-.map-wrapper #controls {
-  top: 10px;
-  left: 110px;
-  width: 360px;
-  height: 45px;
-}
+
 .map #data-box {
   top: 10px;
   left: 500px;
@@ -47,10 +59,6 @@
   display: none;
 }
 
-.map-wrapper #census-variable {
-  width: 360px;
-  height: 20px;
-}
 
 .map-wrapper #legend { display: flex; display: -webkit-box; padding-top: 7px }
 
