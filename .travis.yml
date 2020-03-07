@@ -1,12 +1,9 @@
 language: minimal
 
+before_install:
+  - sudo apt-get install git-ftp
 deploy:
   provider: script
-  before_install:
-    - sudo apt-get install git-ftp
-  addons:
-    apt:
-      update: true
   script: sh .scripts/deploy.sh
   on:
     branch: master
