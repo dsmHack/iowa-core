@@ -14,14 +14,14 @@
           <?php the_title(); ?>
         </h1>
       </div>
-      <div class="content-block">
+      <div class="content-block mb-4">
         <?php the_content();?>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container mb-4">
   <div class="row">
     <div class="col">
       <div class="community-information-module">
@@ -83,7 +83,7 @@
   ));
 ?>
 <?php if($stories) { ?>
-  <div class="container">
+  <div class="container mb-4">
     <div class="row">
       <div class="col">
         <h2 class="text-center">Stories from This Community</h2>
@@ -96,7 +96,7 @@
           <a href="<?php echo get_permalink($story->ID);?>">
             <?php $image = get_field('teaser_photo',  $story->ID);?>
             <?php if(!empty($image)) { ?>
-              <img class="img-fluid" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+              <img class="img-fluid mb-2" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
             <?php } ?>
           </a>
           <h3>
@@ -108,7 +108,8 @@
             <?php echo get_the_excerpt($story->ID);?>
           </p>
         </article>
-    <?php } ?>
+      <?php } ?>
+    </div>
   </div>
 <?php } ?>
 

@@ -36,11 +36,6 @@ $s_query = new WP_Query(array(
             <div class="census-max" id="census-max">max</div>
         </div>
     </div>
-    <div id="data-box">
-        <label id="data-label" for="data-value"></label>
-        <span id="data-value"></span>
-    </div>
-
 
     <div id="map" class="map">
         Google map here
@@ -78,10 +73,6 @@ $s_query = new WP_Query(array(
         map = new google.maps.Map(
             document.getElementById('map'), {zoom: 3, center: centerOfIowa});
 
-    /*
-        yikes
-    */
-   //import the storyARry to get zip and to attach story.link to the clickhandler
         async function createStoryMapMarker(story) {
             let mycall = `https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${story.zip}`
 
@@ -107,14 +98,9 @@ $s_query = new WP_Query(array(
             })
               .catch(error => console.error(error));
         }
-    /*
-        yikes end
-    */
         // this should be over each Story in  storyArray, hard-coded values for now
         for (var i = 0; i < storyArray.length; i++) {
-
-            var marker = createStoryMapMarker(storyArray[i]);
-
+          var marker = createStoryMapMarker(storyArray[i]);
         }
 
         map.fitBounds(strictIowaBounds, 0);
@@ -177,17 +163,9 @@ $s_query = new WP_Query(array(
         map.data.forEach(function (row) {
             row.setProperty('census_variable', undefined);
         });
-        document.getElementById('data-box').style.display = 'none';
         document.getElementById('data-caret').style.display = 'none';
     }
 
-    /**
-     * Applies a gradient style based on the 'census_variable' column.
-     * This is the callback passed to data.setStyle() and is called for each row in
-     * the data set.  Check out the docs for Data.StylingFunction.
-     *
-     * @param {google.maps.Data.Feature} feature
-     */
     function styleFeature(feature) {
         var low = [5, 69, 54];  // color of smallest datum
         var high = [151, 83, 34];   // color of largest datum
@@ -222,25 +200,13 @@ $s_query = new WP_Query(array(
         };
     }
 
-    /**
-     * Responds to the mouse-in event on a map shape (county).
-     *
-     * @param {?google.maps.MouseEvent} e
-     */
     function mouseInToRegion(e) {
-        // set the hover state so the setStyle function can change the border
         e.feature.setProperty('state', 'hover');
         console.log(e.feature);
-        
+
         var percent = (e.feature.getProperty('census_variable') - censusMin) /
             (censusMax - censusMin) * 100;
 
-        // update the label
-        document.getElementById('data-label').textContent =
-            e.feature.getProperty('NAME');
-        document.getElementById('data-value').textContent =
-            e.feature.getProperty('census_variable').toLocaleString();
-        document.getElementById('data-box').style.display = 'block';
         document.getElementById('data-caret').style.display = 'block';
         document.getElementById('data-caret').style.paddingLeft = percent + '%';
     }

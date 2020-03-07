@@ -113,17 +113,15 @@
           <?php setup_postdata($post);?>
           <article>
             <div class="row">
-              <div class="col-md-6">
-                <a href="<?php echo get_permalink($post->ID);?>">
-                  <?php $image = get_field('image', $post->ID);?>
-                  <?php if(!empty($image)) { ?>
-                    <div class="image">
-                      <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-                    </div>
-                  <?php } ?>
-                </a>
-              </div>
-              <div class="col-md-6">
+              <?php $image = get_field('image', $post->ID);?>
+              <?php if(!empty($image)){ ?>
+                <div class="col-md">
+                  <a href="<?php echo get_permalink($post->ID);?>">
+                    <img class="img-fluid mb-4" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                  </a>
+                </div>
+              <?php } ?>
+              <div class="col-md">
                 <h3>
                   <a href="<?php the_permalink(); ?>">
                     <?php the_title(); ?>
