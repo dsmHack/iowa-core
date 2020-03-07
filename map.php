@@ -100,7 +100,7 @@ $s_query = new WP_Query(array(
             })
               .catch(error => console.error(error));
         }
-        // this should be over each Story in  storyArray, hard-coded values for now
+
         for (var i = 0; i < storyArray.length; i++) {
           var marker = createStoryMapMarker(storyArray[i]);
         }
@@ -127,9 +127,8 @@ $s_query = new WP_Query(array(
            censusData.forEach(function (row) {
                if (row.month_ending === mostRecentDate) {
                    var censusVariable = parseFloat(row.benefits_paid);
-                   var county_name = row.county_name;
+                   var countyName = row.county_name;
 
-                   // keep track of min and max values
                    if (censusVariable < censusMin) {
                        censusMin = censusVariable;
                    }
@@ -137,7 +136,7 @@ $s_query = new WP_Query(array(
                        censusMax = censusVariable;
                    }
 
-                   let feature = map.data.getFeatureById(county_name);
+                   let feature = map.data.getFeatureById(countyName);
                    if (typeof feature != 'undefined') {
                        // update the existing row with the new data
                         feature.setProperty('census_variable', censusVariable);
@@ -188,7 +187,6 @@ $s_query = new WP_Query(array(
             isNaN(feature.getProperty('census_variable'))) {
             showRow = false;
         }
-
 
         var outlineWeight = 0.5, zIndex = 1;
 
