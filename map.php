@@ -58,6 +58,11 @@
   <div id="map" class="map">
     GOOGLE MAP HERE
   </div>
+  <div id="legend">
+        <div id="census-min">min</div>
+        <div class="color-key"><span id="data-caret">&#x25c6;</span></div>
+        <div id="census-max">max</div>
+  </div>
 <script>
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
@@ -243,3 +248,4 @@ var mapStyle = [{
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Kyc9KMvnH5Kq61zueqOy3-38Me81siw&&callback=initMap">
     </script>
 </h2>
+
