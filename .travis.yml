@@ -1,7 +1,0 @@
-language: minimal
-os: osx
-deploy:
-  provider: script
-  script: sh .scripts/deploy.sh
-  on:
-    branch: master

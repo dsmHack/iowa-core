@@ -26,7 +26,8 @@ $s_query = new WP_Query(array(
 <div class="map-wrapper">
     <div id="controls" class="nicebox map-controls">
         <select id="census-variable">
-            <option>Unemployment Benefit Paid</option>
+            <option value="unemployment-benefits-paid">Number of unemployment benefits paid</option>
+            <option value="unemployment-statistics">Recorded unemployments in the last available month</option>
         </select>
         <div class="legend" id="legend">
             <div class="census-min" id="census-min">min</div>
@@ -122,6 +123,7 @@ $s_query = new WP_Query(array(
       });
     }
 
+
     function loadUnemploymentBenefitDollarsPerCounty() {
        // load the requested variable from the census API (using local copies)
        var xhr = new XMLHttpRequest();
@@ -161,6 +163,55 @@ $s_query = new WP_Query(array(
                censusMax.toLocaleString();
        };
        xhr.send();
+    }
+
+    function sortByMonth(arr) {
+        var months = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        arr.sort(function(a, b){
+            return months.indexOf(a.month)
+                - months.indexOf(b.month);
+        });
+        return arr;
+    }
+
+    function getGreatestYearGreatestMonthData(data){
+        let maxyyear = data.reduce((max, p)=> p.year > max ? p.year : max, data[0].year);
+        let greatestYearData = data.filter(a=> a.year== maxyyear );
+        var greatestMonth = sortByMonth(greatestYearData)[0].month;
+        return greatestYearData.filter(a =>a.month=greatestMonth);
+    }
+
+    function loadUnemploymentStatisticData(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://data.iowa.gov/resource/tjnj-ed6z.json?$query=SELECT * where area_type=\'County\'');
+        xhr.onload = function () {
+            //var results = getGreatestYearGreatestMonthData(JSON.parse(xhr.responseText));
+            var results = JSON.parse(xhr.responseText);
+
+            results.forEach(function (row) {
+                var censusVariable = parseFloat(row.unemployment * -1);
+                var county_name = row.area_name.replace(' County', '');
+                // keep track of min and max values
+                if (censusVariable < censusMin) {
+                    censusMin = censusVariable;
+                }
+                if (censusVariable > censusMax) {
+                    censusMax = censusVariable;
+                }
+                let feature = map.data.getFeatureById(county_name);
+                if (typeof feature != 'undefined') {
+                    // update the existing row with the new data
+                    feature.setProperty('census_variable', censusVariable);
+                    map.data.setStyle(styleFeature);
+                }
+            });
+           var legendCensusMin = censusMin * -1;
+           document.getElementById('census-min').textContent = legendCensusMin.toLocaleString();
+           var legendCensusMax = censusMax * -1;
+           document.getElementById('census-max').textContent = legendCensusMax.toLocaleString();
+        }
+        xhr.send();
     }
 
     /** Removes census data from each shape on the map and resets the UI. */
@@ -208,7 +259,6 @@ $s_query = new WP_Query(array(
 
     function mouseInToRegion(e) {
         e.feature.setProperty('state', 'hover');
-        console.log(e.feature);
 
         var percent = (e.feature.getProperty('census_variable') - censusMin) /
             (censusMax - censusMin) * 100;
@@ -230,9 +280,12 @@ $s_query = new WP_Query(array(
     jQuery(document).ready(function() {
       const necessaryFunctionWrapper = async function() {
         jQuery('#census-variable').change(function() {
-          const censusChoice = jQuery(this).text().trim();
-          if (censusChoice === 'Unemployment Benefit Paid') {
+          clearCensusData();
+          const censusChoice = jQuery(this).val();
+          if (censusChoice === 'unemployment-benefits-paid') {
             loadUnemploymentBenefitDollarsPerCounty();
+          } else if (censusChoice === 'unemployment-statistics') {
+            loadUnemploymentStatisticData();
           }
         });
         await loadMap();
@@ -243,5 +296,5 @@ $s_query = new WP_Query(array(
 
 </script>
 <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Kyc9KMvnH5Kq61zueqOy3-38Me81siw&&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJoJE6S3oVH_WfZcXAU3o8monAjb3YyjA&&callback=initMap">
 </script>
