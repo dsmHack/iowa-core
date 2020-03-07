@@ -1,25 +1,35 @@
 <?php ?>
-<h2>
-<div id="controls" class="nicebox">
-      <div>
+<div class="map-wrapper">
+
+  <div id="controls" class="nicebox">
+    <div>
       <select id="census-variable">
         <option value="https://data.iowa.gov/resource/aeyn-twxp">Unemployment Benefit Paid</option>
       </select>
-      </div>
-      <div id="legend" style="display: flex; display: -webkit-box; padding-top: 7px ">
-        <div id="census-min">min</div>
-        <div class="color-key"><span id="data-caret">&#x25c6;</span></div>
-        <div id="census-max">max</div>
-      </div>
     </div>
-    <div id="data-box" class="nicebox">
-      <label id="data-label" for="data-value"></label>
-      <span id="data-value"></span>
+    <div id="legend" style="display: flex; display: -webkit-box; padding-top: 7px ">
+      <div id="census-min">min</div>
+      <div class="color-key"><span id="data-caret">&#x25c6;</span></div>
+      <div id="census-max">max</div>
     </div>
-    <div id="map"></div>
+  </div>
+
+  <div id="data-box" class="nicebox">
+    <label id="data-label" for="data-value"></label>
+    <span id="data-value"></span>
+  </div>
+
+
   <div id="map" class="map">
     GOOGLE MAP HERE
   </div>
+
+
+</div>
+
+
+
+
 <script>
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
@@ -196,13 +206,6 @@ var mapStyle = [{
       }
 
     </script>
-    <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Kyc9KMvnH5Kq61zueqOy3-38Me81siw&&callback=initMap">
-    </script>
-</h2>
-
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Kyc9KMvnH5Kq61zueqOy3-38Me81siw&&callback=initMap">
+</script>
