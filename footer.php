@@ -4,6 +4,9 @@
                   <div class="col">
                       <p>&copy; <script>document.write(new Date().getFullYear())</script> Rethink Iowa
                   </div>
+                  <div class="col">
+                      <span>Learn More about <a href="https://www.rethinkiowa.com/">Rethink Iowa</a></span>
+                  </div>
               </div>
           </div>
       </footer>

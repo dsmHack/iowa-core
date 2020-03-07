@@ -13,6 +13,17 @@ body {
 
 }
 
+.category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.category-list li {
+  display: inline;
+}
+
 .content-block img,
 .content-block video {
   max-width: 100%;
