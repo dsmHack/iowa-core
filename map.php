@@ -10,7 +10,7 @@
   <?php while ($s_query->have_posts()) { ?>
     <?php $s_query->the_post();?>
     <?php $story_array = array(
-              'link' => wp_get_permalink(),
+              'link' => get_permalink(),
               'title' => get_the_title(),
               'community' => get_field('community'), 
               'zip' => get_field('zip'), 
