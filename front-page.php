@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col map-summary">
             <?php the_content();?>
         </div>
     </div>
