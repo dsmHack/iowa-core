@@ -9,7 +9,7 @@
 <?php if ($s_query->have_posts()){ ?>
   <?php while ($s_query->have_posts()) { ?>
     <?php $s_query->the_post();?>
-    <?php array_push($story_array,
+    <?php $story_array = array(
               'link' => get_permalink(),
               'title' => get_the_title(),
               'community' => get_field('community'), 
