@@ -59,7 +59,7 @@ var mapStyle = [{
       var map;
       var censusMin = Number.MAX_VALUE, censusMax = -Number.MAX_VALUE;
 
-      function initMap() {
+      async function initMap() {
         var centerOfIowa = {lat: 41.8780, lng: -93.0977};
         var centerOfDesMoines = {lat: 41.5868, lng: -93.6250};
         var storyLocations = [centerOfIowa, centerOfDesMoines];
@@ -81,7 +81,7 @@ var mapStyle = [{
 
         map.fitBounds(strictIowaBounds, 0);
 
-        loadMapShapes();
+        await loadMapShapes();
       }
 
       async function loadMapShapes() {
