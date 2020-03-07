@@ -25,52 +25,67 @@ Contributors<br />
     <?php while(have_rows('contributors')) { ?>
       <li>
         <?php the_row();?>
-        <?php echo get_sub_field('contributor');?>
+        <?php echo get_sub_field('contributor_name');?>
       </li>
     <?php } ?>
   </ul>
 <?php } ?>
 
-Minority Group<br />
+Minority Group
 <?php the_field('minority_group');?>
 
-Street Address<br />
+Street Address
 <?php the_field('street_address');?>
 
-City<br />
+City
 <?php the_field('city');?>
 
-Zip<br />
+Zip
 <?php the_field('zip');?>
 
 Image Gallery:
 <?php
-  $images = get_field('image_gallery');
-  $size = 'full';
-?>
-<?php if($images){ ?>
-  <ul>
-    <?php foreach($images as $image_id){ ?>
-      <li>
-        <?php echo wp_get_attachment_image($image_id, $size);?>
-      </li>
-    <?php } ?>
-  </ul>
-<?php } ?>
+$images = get_field('image_gallery');
+if( $images ): ?>
+    <ul>
+        <?php foreach( $images as $image ): ?>
+            <li>
+                <a href="<?php echo esc_url($image['url']); ?>">
+                     <img src="<?php echo esc_url($image['sizes']['thumbnail']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                </a>
+                <p><?php echo esc_html($image['caption']); ?></p>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
 
 Tags/Categories
 <?php
-  $terms = get_the_terms( $post->ID , 'category');
+  $terms = wp_get_post_terms($post->ID);
 
-  foreach ($terms as $term) {
-    echo $term->name;
+  if ($terms) {
+    foreach ($terms as $term) {
+      echo $term;
+    }
   }
 ?>
 
-Industry Type (TBD) <br />
+<h2>Community</h2>
+<?php
 
-  <h2>SHOW ME THE COMMUNITY THAT I BELONG TO</h2>
+$posts = get_field('community');
 
-
+if( $posts ): ?>
+    <ul>
+    <?php foreach( $posts as $post):?>
+        <?php setup_postdata($post); ?>
+        <li>
+          <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+          <?php the_excerpt();?>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    <?php wp_reset_postdata();?>
+<?php endif; ?>
 
 <?php get_footer();?>
