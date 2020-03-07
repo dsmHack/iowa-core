@@ -290,5 +290,5 @@ $s_query = new WP_Query(array(
 
 </script>
 <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Kyc9KMvnH5Kq61zueqOy3-38Me81siw&&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdgNID2pjCD3zbLeJHuuWEHd_UYBW-S94&&callback=initMap">
 </script>
