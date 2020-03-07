@@ -71,23 +71,30 @@ Zip codes:<br />
   </div>
 </div>
 
-<?php if($stories){ ?>
-  <ul>
-    <?php foreach( $stories as $story){ ?>
-      <li>
+<?php if($stories) { ?>
+  <div class="container">
+    <div class="row">
+      <?php foreach($stories as $story) { ?>
+        <article class="col-md-4 mb-2">
           <a href="<?php echo get_permalink($story->ID);?>">
             <?php $image = get_field('teaser_photo',  $story->ID);?>
             <?php if(!empty($image)) { ?>
-              <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+              <div class="image">
+                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+              </div>
             <?php } ?>
           </a>
-          <a href="<?php echo get_permalink($story->ID);?>">
-            <?php echo get_the_title($story->ID);?>
-          </a>
-          <?php echo get_the_excerpt($story->ID);?>
-      </li>
+          <h3>
+            <a href="<?php echo get_permalink($story->ID);?>">
+              <?php echo get_the_title($story->ID);?>
+            </a>
+          </h3>
+          <p>
+            <?php echo get_the_excerpt($story->ID);?>
+          </p>
+        </article>
     <?php } ?>
-  </ul>
+  </div>
 <?php } ?>
 
 <?php get_footer();?>
