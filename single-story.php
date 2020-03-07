@@ -16,7 +16,6 @@
   </h1>
 
   <?php the_content();?>
-
   - Date
   - Name(s)
   - Industry Type
