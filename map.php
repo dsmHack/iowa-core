@@ -9,7 +9,7 @@
 <?php if ($s_query->have_posts()){ ?>
   <?php while ($s_query->have_posts()) { ?>
     <?php $s_query->the_post();?>
-    <?php $story_array[] = 'test';?>
+    <?php $story_array[] = $s_query;?>
   <?php } ?>
 <?php } ?>
 <?php wp_reset_postdata();?>
