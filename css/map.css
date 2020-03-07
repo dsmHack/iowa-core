@@ -17,6 +17,11 @@
   z-index: 1;
 }
 
+.map-wrapper .gmnoprint,
+.map-wrapper .gm-svpc {
+  display: none;
+}
+
 .map-wrapper .map-controls {
   background-color: #fff;
   border-radius: 4px;
