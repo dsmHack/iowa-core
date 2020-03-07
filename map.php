@@ -59,7 +59,7 @@ $s_query = new WP_Query(array(
     var map;
     var censusMin = Number.MAX_VALUE, censusMax = -Number.MAX_VALUE;
 
-    async function initMap() {
+    function initMap() {
         var centerOfIowa = {lat: 41.8780, lng: -93.0977};
         var centerOfDesMoines = {lat: 41.5868, lng: -93.6250};
         var storyLocations = [centerOfIowa, centerOfDesMoines];
@@ -81,60 +81,54 @@ $s_query = new WP_Query(array(
 
         map.fitBounds(strictIowaBounds, 0);
 
-        await loadMapShapes();
+         loadMapShapes();
     }
 
     function loadMapShapes() {
         // load US state outline polygons from a GeoJson file
-        map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName: 'name'}, async function() {
-          await loadCensusData();
+        map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName: 'name'}, function() {
+          loadCensusData();
         });
     }
 
     function loadCensusData() {
-      return new Promise((resolve, reject) => {
-         // load the requested variable from the census API (using local copies)
-         var xhr = new XMLHttpRequest();
-         xhr.open('GET', 'https://data.iowa.gov/resource/aeyn-twxp.json');
-         xhr.onload = function () {
-             var censusData = JSON.parse(xhr.responseText);
-             var mostRecentDate = censusData[0].month_ending;
-             censusData.shift(); // the first row contains column names
-             censusData.forEach(function (row) {
-                 if (row.month_ending === mostRecentDate) {
-                     var censusVariable = parseFloat(row.benefits_paid);
-                     var county_name = row.county_name;
+       // load the requested variable from the census API (using local copies)
+       var xhr = new XMLHttpRequest();
+       xhr.open('GET', 'https://data.iowa.gov/resource/aeyn-twxp.json');
+       xhr.onload = function () {
+           var censusData = JSON.parse(xhr.responseText);
+           var mostRecentDate = censusData[0].month_ending;
+           censusData.shift(); // the first row contains column names
+           censusData.forEach(function (row) {
+               if (row.month_ending === mostRecentDate) {
+                   var censusVariable = parseFloat(row.benefits_paid);
+                   var county_name = row.county_name;
 
-                     // keep track of min and max values
-                     if (censusVariable < censusMin) {
-                         censusMin = censusVariable;
-                     }
-                     if (censusVariable > censusMax) {
-                         censusMax = censusVariable;
-                     }
+                   // keep track of min and max values
+                   if (censusVariable < censusMin) {
+                       censusMin = censusVariable;
+                   }
+                   if (censusVariable > censusMax) {
+                       censusMax = censusVariable;
+                   }
 
-                     let feature = map.data.getFeatureById(county_name);
-                     if (typeof feature != 'undefined') {
-                         // update the existing row with the new data
-                         feature.setProperty('census_variable', censusVariable);
-                         map.data.setStyle(styleFeature);
-                     }
+                   let feature = map.data.getFeatureById(county_name);
+                   if (typeof feature != 'undefined') {
+                       // update the existing row with the new data
+                       feature.setProperty('census_variable', censusVariable);
+                       map.data.setStyle(styleFeature);
+                   }
 
-                 }
-             });
+               }
+           });
 
-             // update and display the legend
-             document.getElementById('census-min').textContent =
-                 censusMin.toLocaleString();
-             document.getElementById('census-max').textContent =
-                 censusMax.toLocaleString();
-           resolve();
-         };
-         xhr.onerror = function () {
-           reject(xhr.statusText);
-         }
-         xhr.send();
-      });
+           // update and display the legend
+           document.getElementById('census-min').textContent =
+               censusMin.toLocaleString();
+           document.getElementById('census-max').textContent =
+               censusMax.toLocaleString();
+       };
+       xhr.send();
     }
 
     /** Removes census data from each shape on the map and resets the UI. */
@@ -226,6 +220,6 @@ $s_query = new WP_Query(array(
     }
 
 </script>
-<script async defer
+<script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Kyc9KMvnH5Kq61zueqOy3-38Me81siw&&callback=initMap">
 </script>
