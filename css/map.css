@@ -1,6 +1,7 @@
 .map-wrapper {
   background-color: #ccc;
   height: calc(80vh);
+  margin-bottom: 2em;
   overflow: hidden;
   position: relative;
   width: 100%;
