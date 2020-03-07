@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="container-fluid">
-    <?php get_template_part('map');?>
+  <?php include 'map.php';?>
 </div>
 
 <?php $community_query = new WP_Query(array(
