@@ -16,7 +16,7 @@
               'community' => get_field('community'), 
               'zip' => get_field('zip'), 
           ); 
-      $story_associative_array = array_push($story_associative_array, $story_array)  
+      array_push($story_associative_array, $story_array)  
 
           ?>
   <?php } ?>
