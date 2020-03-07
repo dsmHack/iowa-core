@@ -44,7 +44,7 @@ console.log('hello', story_array);
 var mapStyle = [{
         'stylers': [{'visibility': 'off'}]
       }, {
-        'featureType': 'landscape'
+        'featureType': 'landscape',
         'elementType': 'geometry',
         'stylers': [{'visibility': 'on'}, {'color': '#fcfcfc'}]
       }, {
@@ -80,12 +80,11 @@ var mapStyle = [{
         loadMapShapes();
       }
 
-      function loadMapShapes() {
+      async function loadMapShapes() {
           // load US state outline polygons from a GeoJson file
-          map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName:'name'},
-          function(features) {
-            loadCensusData();
-          });
+         await  map.data.loadGeoJson('https://raw.githubusercontent.com/dsmHack/iowa-core/master/geojson/iowa_counties.json', {idPropertyName:'name'});
+         await loadCensusData();
+
       }
 
       function loadCensusData() {

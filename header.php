@@ -17,13 +17,4 @@
 
   </head>
   <body <?php body_class(); ?>>
-    <!-- wrapper -->
     <div class="wrapper">
-      <header class="header clear" role="banner">
-    <!--
-        <?php wp_nav_menu(array(
-            'theme_location' => 'my-custom-menu',
-            'container_class' => 'custom-menu-class'
-        ));?>
--->
-      </header>
