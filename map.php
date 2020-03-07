@@ -1,5 +1,6 @@
 <?php
   $story_array = array();
+  $story_associative_array = array();
   $s_query = new WP_Query(array(
     'post_type' => 'story',
     'posts_per_page' => -1,
@@ -14,7 +15,10 @@
               'title' => get_the_title(),
               'community' => get_field('community'), 
               'zip' => get_field('zip'), 
-          ); ?>
+          ); 
+      array_push($story_associative_array, $story_array)  
+
+          ?>
   <?php } ?>
 <?php } ?>
 <?php wp_reset_postdata();?>
