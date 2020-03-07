@@ -3,9 +3,24 @@
   <div id="map" class="map">
     GOOGLE MAP HERE
   </div>
-  <div id="legend">
+  <div id="legend" style=" { display: flex; display: -webkit-box; padding-top: 7px }">
         <div id="census-min">min</div>
-        <div class="color-key"><span id="data-caret">&#x25c6;</span></div>
+        <div style="{
+          background: linear-gradient(to right,
+            hsl(5, 69%, 54%) 0%,
+            hsl(29, 71%, 51%) 17%,
+            hsl(54, 74%, 47%) 33%,
+            hsl(78, 76%, 44%) 50%,
+            hsl(102, 78%, 41%) 67%,
+            hsl(127, 81%, 37%) 83%,
+            hsl(151, 83%, 34%) 100%);
+          flex: 1;
+          -webkit-box-flex: 1;
+          margin: 0 5px;
+          text-align: left;
+          font-size: 1.0em;
+          line-height: 1.0em;
+        }"><span id="data-caret" sytle="{ margin-left: -5px; display: none; font-size: 14px; width: 14px}">&#x25c6;</span></div>
         <div id="census-max">max</div>
   </div>
 <script>
