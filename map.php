@@ -128,7 +128,7 @@ $s_query = new WP_Query(array(
            censusData.shift(); // the first row contains column names
            censusData.forEach(function (row) {
                if (row.month_ending === mostRecentDate) {
-                   var censusVariable = parseFloat(row.benefits_paid);
+                   var censusVariable = parseFloat(row.benefits_paid * -1);
                    var countyName = row.county_name;
 
                    if (censusVariable < censusMin) {
@@ -151,10 +151,10 @@ $s_query = new WP_Query(array(
            });
 
            // update and display the legend
-           document.getElementById('census-min').textContent =
-               censusMin.toLocaleString();
-           document.getElementById('census-max').textContent =
-               censusMax.toLocaleString();
+           var legendCensusMin = censusMin * -1;
+           document.getElementById('census-min').textContent = legendCensusMin.toLocaleString();
+           var legendCensusMax = censusMax * -1;
+           document.getElementById('census-max').textContent = legendCensusMax.toLocaleString();
        };
        xhr.send();
     }
@@ -184,7 +184,7 @@ $s_query = new WP_Query(array(
             var results = JSON.parse(xhr.responseText);
 
             results.forEach(function (row) {
-                var censusVariable = parseFloat(row.unemployment);
+                var censusVariable = parseFloat(row.unemployment * -1);
                 var county_name = row.area_name.replace(' County', '');
                 // keep track of min and max values
                 if (censusVariable < censusMin) {
@@ -200,6 +200,10 @@ $s_query = new WP_Query(array(
                     map.data.setStyle(styleFeature);
                 }
             });
+           var legendCensusMin = censusMin * -1;
+           document.getElementById('census-min').textContent = legendCensusMin.toLocaleString();
+           var legendCensusMax = censusMax * -1;
+           document.getElementById('census-max').textContent = legendCensusMax.toLocaleString();
         }
         xhr.send();
     }
@@ -249,7 +253,6 @@ $s_query = new WP_Query(array(
 
     function mouseInToRegion(e) {
         e.feature.setProperty('state', 'hover');
-        console.log(e.feature);
 
         var percent = (e.feature.getProperty('census_variable') - censusMin) /
             (censusMax - censusMin) * 100;
