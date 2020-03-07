@@ -81,11 +81,6 @@ Tags/Categories
   }
 ?>
 
-<div class="community-module">
-  <h2 class="text-center">Community</h2>
-
-</div>
-
 <?php $posts = get_field('community');?>
 <?php if($posts) { ?>
   <div class="community-module">

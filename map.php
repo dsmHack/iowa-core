@@ -13,10 +13,10 @@
     <?php $story_array = array(
               'link' => get_permalink(),
               'title' => get_the_title(),
-              'community' => get_field('community'), 
-              'zip' => get_field('zip'), 
-          ); 
-      array_push($story_associative_array, $story_array)  
+              'community' => get_field('community'),
+              'zip' => get_field('zip'),
+          );
+      array_push($story_associative_array, $story_array)
 
           ?>
   <?php } ?>
@@ -28,16 +28,16 @@
     <select id="census-variable">
       <option value="https://data.iowa.gov/resource/aeyn-twxp">Unemployment Benefit Paid</option>
     </select>
+    <div class="legend" id="legend">
+      <div class="census-min" id="census-min">min</div>
+      <div class="color-key">
+        <span id="data-caret">&#x25c6;</span>
+      </div>
+      <div class="census-max" id="census-max">max</div>
+    </div>
   </div>
   <div id="map" class="map">
     Google map here
-  </div>
-  <div class="legend" id="legend">
-    <div class="census-min" id="census-min">min</div>
-    <div class="color-key">
-      <span id="data-caret">&#x25c6;</span>
-    </div>
-    <div class="census-max" id="census-max">max</div>
   </div>
 </div>
 

@@ -35,6 +35,9 @@ function register_styles() {
     wp_register_style('storyposts', get_template_directory_uri() . '/css/story-post-module.css', array(), '1.0', 'all');
     wp_enqueue_style('storyposts');
 
+    wp_register_style('communitymodule', get_template_directory_uri() . '/css/community-module.css', array(), '1.0', 'all');
+    wp_enqueue_style('communitymodule');
+
     wp_register_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', array(), '4.4.1', 'all');
     wp_enqueue_style('bootstrap');
 
