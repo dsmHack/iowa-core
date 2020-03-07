@@ -39,6 +39,7 @@ function register_styles() {
 add_action( 'wp_enqueue_scripts', 'register_styles' );
 
 require_once('functions-story.php');
+require_once('functions-community.php');
 
 ///* Load Script */
 //add_action( 'wp_enqueue_scripts', function(){

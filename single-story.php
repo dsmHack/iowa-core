@@ -17,6 +17,25 @@
 
   <?php the_content();?>
 
+  - Date
+  - Name(s)
+  - Industry Type
+  - Minority Group
+  - Location (Address, City, Zip)
+  - Upload video
+  - Upload photo
+  - Description/story tect
+  - Headline
+  - Tags (able to select multiple)
+      - Small Business
+      - Entertainment
+      - Minority Owned
+      - Women Owned
+      - Veteran Owned
+      - Community
+      - Impact
+      - Supplier Diversity
+
   <h2>Do we need a pagebuilder?</h2>
   <h2>SHOW ME THE TAXONOMY THAT I BELONG TO</h2>
 
