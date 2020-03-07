@@ -1,3 +1,5 @@
+language: minimal
+
 deploy:
   provider: script
   skip_cleanup: true
