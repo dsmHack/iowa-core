@@ -66,7 +66,7 @@
       </div>
       <div class="row">
         <?php foreach( $images as $image ){ ?>
-          <div class="col-md-4">
+          <div class="col-md-4 mb-2">
             <a href="<?php echo esc_url($image['url']); ?>">
                <img class="img-fluid" src="<?php echo esc_url($image['sizes']['large']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
             </a>
