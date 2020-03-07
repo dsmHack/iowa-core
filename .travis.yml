@@ -1,7 +1,5 @@
 language: minimal
 os: osx
-before_install:
-  - brew install git-ftp
 deploy:
   provider: script
   script: sh .scripts/deploy.sh
