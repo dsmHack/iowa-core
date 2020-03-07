@@ -17,13 +17,40 @@
 
   <?php the_content();?>
 
-Need to be able to 'relate' to Story
-  Communities Profiles
-      - Name
-      - Included zip codes
-      - Avg household income
-      - School district
-      - Prominent businesses
-      - Median population age
+Zip codes:<br />
+<?php if(have_rows('zip_codes')) { ?>
+  <ul>
+    <?php while(have_rows('zip_codes')) { ?>
+      <li>
+        <?php the_row();?>
+        <?php echo get_sub_field('zip_code');?>
+      </li>
+    <?php } ?>
+  </ul>
+<?php } ?>
+
+Prominent Businesses:<br />
+<?php if(have_rows('prominent_businesses')) { ?>
+  <ul>
+    <?php while(have_rows('prominent_businesses')) { ?>
+      <li>
+        <?php the_row();?>
+        <?php echo get_sub_field('business');?>
+      </li>
+    <?php } ?>
+  </ul>
+<?php } ?>
+
+Average Household Income:<br />
+<?php echo get_field('average_household_income');?>
+
+School District:<br />
+<?php echo get_field('school_district');?>
+
+Median Population Age<br />
+<?php echo get_field('median_population_age');?>
+
+<h2>LOOP THROUGH RELATED STORIES</h2>
+
 
 <?php get_footer();?>
