@@ -26,7 +26,7 @@ add_action( 'wp_enqueue_scripts', 'register_scripts' );
 
 
 function register_styles() {
-    wp_register_style('normalize', get_template_directory_uri() . '/css/normalize.css', array(), '1.0', 'all');
+    wp_register_style('normalize', get_template_directory_uri() . '/css/normalize.min.css', array(), '1.0', 'all');
     wp_enqueue_style('normalize');
 
     wp_register_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', array(), '4.4.1', 'all');
