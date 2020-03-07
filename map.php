@@ -41,7 +41,7 @@ $s_query = new WP_Query(array(
         <span id="data-value"></span>
     </div>
 
-    
+
     <div id="map" class="map">
         Google map here
     </div>
@@ -96,7 +96,13 @@ $s_query = new WP_Query(array(
                 let marker = new google.maps.Marker({position: latLngObj, map: map});
                 marker.addListener('click', function () {
                     window.location.href = story.link;
-            });
+                });
+                marker.addListener('mouseover', function () {
+                  marker.setAnimation(google.maps.Animation.BOUNCE);
+                });
+                marker.addListener('mouseout', function () {
+                  marker.setAnimation(null);
+                });
                 return;
             })
               .catch(error => console.error(error));
@@ -205,10 +211,6 @@ $s_query = new WP_Query(array(
 
 
         var outlineWeight = 0.5, zIndex = 1;
-
-        if (feature.getProperty('state') === 'hover') {
-          outlineWeight = zIndex = 2;
-        }
 
         return {
             strokeWeight: outlineWeight,
