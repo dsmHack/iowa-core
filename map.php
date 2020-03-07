@@ -92,44 +92,49 @@ $s_query = new WP_Query(array(
     }
 
     function loadCensusData() {
-        // load the requested variable from the census API (using local copies)
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://data.iowa.gov/resource/aeyn-twxp.json');
-        xhr.onload = function () {
-            var censusData = JSON.parse(xhr.responseText);
-            var mostRecentDate = censusData[0].month_ending;
-            censusData.shift(); // the first row contains column names
-            censusData.forEach(function (row) {
-                if (row.month_ending === mostRecentDate) {
-                    var censusVariable = parseFloat(row.benefits_paid);
-                    var county_name = row.county_name;
+      return new Promise((resolve, reject) => {
+         // load the requested variable from the census API (using local copies)
+         var xhr = new XMLHttpRequest();
+         xhr.open('GET', 'https://data.iowa.gov/resource/aeyn-twxp.json');
+         xhr.onload = function () {
+             var censusData = JSON.parse(xhr.responseText);
+             var mostRecentDate = censusData[0].month_ending;
+             censusData.shift(); // the first row contains column names
+             censusData.forEach(function (row) {
+                 if (row.month_ending === mostRecentDate) {
+                     var censusVariable = parseFloat(row.benefits_paid);
+                     var county_name = row.county_name;
 
-                    // keep track of min and max values
-                    if (censusVariable < censusMin) {
-                        censusMin = censusVariable;
-                    }
-                    if (censusVariable > censusMax) {
-                        censusMax = censusVariable;
-                    }
+                     // keep track of min and max values
+                     if (censusVariable < censusMin) {
+                         censusMin = censusVariable;
+                     }
+                     if (censusVariable > censusMax) {
+                         censusMax = censusVariable;
+                     }
 
-                    let feature = map.data.getFeatureById(county_name);
-                    if (typeof feature != 'undefined') {
+                     let feature = map.data.getFeatureById(county_name);
+                     if (typeof feature != 'undefined') {
+                         // update the existing row with the new data
+                         feature.setProperty('census_variable', censusVariable);
+                         map.data.setStyle(styleFeature);
+                     }
 
-                        // update the existing row with the new data
-                        feature.setProperty('census_variable', censusVariable);
-                        map.data.setStyle(styleFeature);
-                    }
+                 }
+             });
 
-                }
-            });
-
-            // update and display the legend
-            document.getElementById('census-min').textContent =
-                censusMin.toLocaleString();
-            document.getElementById('census-max').textContent =
-                censusMax.toLocaleString();
-        };
-        xhr.send();
+             // update and display the legend
+             document.getElementById('census-min').textContent =
+                 censusMin.toLocaleString();
+             document.getElementById('census-max').textContent =
+                 censusMax.toLocaleString();
+           resolve();
+         };
+         xhr.onerror = function () {
+           reject(xhr.statusText);
+         }
+         xhr.send();
+      });
     }
 
     /** Removes census data from each shape on the map and resets the UI. */
