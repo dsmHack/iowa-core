@@ -35,6 +35,12 @@
           .then(function(data){
             console.log(data);
           })
+
+          fetch(`https://data.iowa.gov/resource/yhbr-3t8a.json?$query=SELECT * where year='2019' and county_name='${county}'`)
+          .then(response=>response.json())
+          .then(function(data){
+            console.log(data);
+          })
         </script>
         Zip codes:<br />
         <?php if(have_rows('zip_codes')) { ?>
