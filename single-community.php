@@ -5,11 +5,6 @@
   <div class="row">
     <div class="col">
       <div class="title-block">
-        <p>
-          <small>
-            <a href="/">Home</a> / <strong><?php the_title(); ?></strong>
-          </small>
-        </p>
         <h1 class="text-center">
           <?php the_title(); ?>
         </h1>
@@ -25,7 +20,7 @@
   <div class="row">
     <div class="col">
       <div class="community-information-module">
-
+        <?php echo wp_remote_get("https://data.iowa.gov/resource/yhbr-3t8a.json?$query=SELECT * WHERE primary_long_dec <= -93.52568000000001 and primary_long_dec >= -93.94568 AND primary_lat_dec >= 41.360915999999996 and primary_lat_dec <= 41.780916 and year == 2018")[0] ?>
         Zip codes:<br />
         <?php if(have_rows('zip_codes')) { ?>
           <ul>
