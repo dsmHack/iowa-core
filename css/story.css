@@ -4,9 +4,14 @@
   clear: both;
 }
 
+.gutter-sizer {
+  width: 1.5%;
+}
+
 .grid-sizer,
 .grid-item {
-  width: 33.333%;
+  margin-bottom: 1.5%;
+  width: 31.5%;
 }
 
 .grid-item {
