@@ -2,7 +2,7 @@
           <div class="container">
               <div class="row">
                   <div class="col">
-                      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script>
+                      <p>&copy; <script>document.write(new Date().getFullYear())</script> Rethink Iowa
                   </div>
               </div>
           </div>

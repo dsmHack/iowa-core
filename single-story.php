@@ -1,20 +1,31 @@
 <?php get_header(); ?>
 <?php the_post();?>
 
-<h2>I AM A SINGLE CUSTOM POST TYPE (STORY)</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
 
-  <?php if (has_post_thumbnail()) { ?>
-    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-      <?php the_post_thumbnail();?>
-    </a>
-  <?php } ?>
+    </div>
+  </div>
+</div>
 
-  <h1>
-    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-      <?php the_title(); ?>
-    </a>
-  </h1>
-  <?php the_content();?>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="title-block">
+        <h1 class="text-center">
+          <?php the_title(); ?>
+        </h1>
+      </div>
+      <div class="content-block">
+        <?php the_content();?>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 Date<br />
 <?php the_field('date');?>
@@ -70,22 +81,29 @@ Tags/Categories
   }
 ?>
 
-<h2>Community</h2>
-<?php
+<div class="community-module">
+  <h2 class="text-center">Community</h2>
 
-$posts = get_field('community');
+</div>
 
-if( $posts ): ?>
-    <ul>
-    <?php foreach( $posts as $post):?>
-        <?php setup_postdata($post); ?>
-        <li>
-          <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+<?php $posts = get_field('community');?>
+<?php if($posts) { ?>
+  <div class="community-module">
+    <?php foreach( $posts as $post){ ?>
+      <?php setup_postdata($post);?>
+      <article>
+        <h2>
+          <a href="<?php the_permalink(); ?>">
+            <?php the_title(); ?>
+          </a>
+        </h2>
+        <div class="excerpt">
           <?php the_excerpt();?>
-        </li>
-    <?php endforeach; ?>
-    </ul>
+        </div>
+      </article>
+    <?php } ?>
     <?php wp_reset_postdata();?>
-<?php endif; ?>
+  </div>
+<?php } ?>
 
 <?php get_footer();?>
