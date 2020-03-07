@@ -64,15 +64,14 @@
           <h2 class="text-center">Gallery</h2>
         </div>
       </div>
-      <div class="row">
+      <div class="grid">
+        <div class="grid-sizer"></div>
         <?php foreach( $images as $image ){ ?>
-          <div class="col-md-4 mb-2">
-            <a href="<?php echo esc_url($image['url']); ?>">
-               <img class="img-fluid" src="<?php echo esc_url($image['sizes']['large']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-            </a>
-            <p>
-              <?php echo esc_html($image['caption']); ?>
-            </p>
+          <div class="grid-item">
+            <img class="img-fluid"
+              src="<?php echo esc_url($image['sizes']['large']); ?>"
+              alt="<?php echo esc_attr($image['alt']); ?>"
+            />
           </div>
         <?php } ?>
       </div>

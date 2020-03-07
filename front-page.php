@@ -6,8 +6,10 @@
         <div class="col">
           <div class="title-block">
             <h1 class="text-center"><?php the_title();?></h1>
-            <div class="col map-summary">
-              <?php the_content();?>
+            <div class="col">
+              <div class="lead">
+                <?php the_content();?>
+              </div>
             </div>
           </div>
         </div>
@@ -27,31 +29,31 @@
     <div class="container">
       <?php while ($community_query->have_posts()) { ?>
         <?php $community_query->the_post();?>
-          <div class="row">
-            <div class="col">
-              <h2>
-                <a href="<?php the_permalink();?>">
-                  <?php the_title();?>
-                </a>
-              </h2>
-              <hr />
-            </div>
-          </div>
           <?php
             $stories = get_posts(array(
               'post_type' => 'story',
               'meta_query' => array(
-                  array(
-                      'key' => 'community',
-                      'value' => '"' . $post->ID . '"',
-                      'compare' => 'LIKE'
-                  )
+                array(
+                  'key' => 'community',
+                  'value' => '"' . $post->ID . '"',
+                  'compare' => 'LIKE'
+                )
               )
             ));
           ?>
           <?php if( $stories ): ?>
             <div class="row">
-            <?php foreach( $stories as $story): ?>
+              <div class="col">
+                <h2 class="text-center">
+                  <a href="<?php the_permalink();?>">
+                    <?php the_title();?>
+                  </a>
+                </h2>
+                <hr />
+              </div>
+            </div>
+            <div class="row">
+            <?php foreach($stories as $story): ?>
                 <article class="col-md-4 mb-2">
                   <a href="<?php echo get_permalink($story->ID);?>">
                     <?php $image = get_field('teaser_photo',  $story->ID);?>
