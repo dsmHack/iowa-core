@@ -43,17 +43,17 @@
             $stories = get_posts(array(
               'post_type' => 'story',
               'meta_query' => array(
-                  array(
-                      'key' => 'community',
-                      'value' => '"' . $post->ID . '"',
-                      'compare' => 'LIKE'
-                  )
+                array(
+                  'key' => 'community',
+                  'value' => '"' . $post->ID . '"',
+                  'compare' => 'LIKE'
+                )
               )
             ));
           ?>
           <?php if( $stories ): ?>
             <div class="row">
-            <?php foreach( $stories as $story): ?>
+            <?php foreach($stories as $story): ?>
                 <article class="col-md-4 mb-2">
                   <a href="<?php echo get_permalink($story->ID);?>">
                     <?php $image = get_field('teaser_photo',  $story->ID);?>
