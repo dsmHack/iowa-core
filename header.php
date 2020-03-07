@@ -20,8 +20,7 @@
     <!-- wrapper -->
     <div class="wrapper">
       <header class="header clear" role="banner">
-        Iowa Core Header
-<!--
+    <!--
         <?php wp_nav_menu(array(
             'theme_location' => 'my-custom-menu',
             'container_class' => 'custom-menu-class'
